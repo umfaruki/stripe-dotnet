@@ -1,18 +1,30 @@
+version: 6.7.0.{build}
+image: Visual Studio 2015
+deploy: off
+
 environment:
-  assembly_version: 6.7.0
   stripe_test_secret_key:
     secure: +p/EWA8+0B64k7a88nb6ZiSTcv6TIukyhQQU2Ljf7jNVtwVZXhJtNf5LdemV7EuY
+
+assembly_info:
+  patch: true
+  file: src\SharedAssemblyInfo.cs
+  assembly_version: '$(version)'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
 
 before_build:
   - nuget restore src\Stripe.sln
 
 build:
+  project: src\Stripe.sln
+  publish_nuget: true
   verbosity: minimal
 
-assembly_info:
-  patch: true
-  file: src\SharedAssemblyInfo.cs
-  assembly_version: '$(assembly_version)'
+artifacts:
+- path: src\Stripe
+  name: Stripe
 
-on_success:
-  cmd: build.cmd
+on_finish:
+- cmd: type build\Stripe.net.nuspec
+- cmd: build\ls
