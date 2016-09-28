@@ -26,5 +26,4 @@ artifacts:
   name: Stripe
 
 on_finish:
-- cmd: build.cmd
-
+- cmd: .\build.cmd
