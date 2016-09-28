@@ -1,4 +1,4 @@
-version: 6.7.0
+version: 6.7.0.{build}
 image: Visual Studio 2015
 deploy: off
 
