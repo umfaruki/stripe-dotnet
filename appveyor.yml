@@ -13,3 +13,6 @@ assembly_info:
   patch: true
   file: src\SharedAssemblyInfo.cs
   assembly_version: '$(assembly_version)'
+
+on_success:
+  cmd: build.cmd
