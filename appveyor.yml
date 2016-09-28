@@ -22,7 +22,7 @@ build:
   verbosity: minimal
 
 artifacts:
-- path: src\Stripe
+- path: .
   name: Stripe
 
 on_finish:
