@@ -22,8 +22,9 @@ build:
   verbosity: minimal
 
 artifacts:
-- path: .
+- path: build
   name: Stripe
 
 on_finish:
-- cmd: type build\Stripe.net.nuspec
+- cmd: build.cmd
+
