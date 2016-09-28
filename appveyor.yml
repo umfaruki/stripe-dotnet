@@ -27,4 +27,3 @@ artifacts:
 
 on_finish:
 - cmd: type build\Stripe.net.nuspec
-- cmd: type 'hello there Ilya !!!! '
