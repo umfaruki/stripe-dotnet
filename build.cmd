@@ -6,5 +6,3 @@ copy .\src\Stripe.Portable\bin\Release\Stripe.net.xml .\build\portable\Stripe.ne
 cd build
 del *.nupkg
 nuget pack Stripe.net.nuspec
-
-pause
