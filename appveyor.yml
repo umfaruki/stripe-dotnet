@@ -1,5 +1,6 @@
 version: 6.7.0.{build}
 image: Visual Studio 2015
+configuration: Release
 deploy: off
 
 environment:
@@ -18,12 +19,13 @@ before_build:
 
 build:
   project: src\Stripe.sln
-  publish_nuget: true
   verbosity: minimal
+
+after_build:
+- cmd: 'build.bat'
 
 artifacts:
 - path: build
-  name: Stripe
-
-on_finish:
-- cmd: .\build.cmd
+- path: src
+- path: '**'
+  name: Stripe.net

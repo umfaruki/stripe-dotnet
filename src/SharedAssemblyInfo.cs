@@ -1,7 +1,7 @@
 using System.Reflection;
 
 [assembly: AssemblyTitle("Stripe.net")]
-[assembly: AssemblyCompany("Jayme Davis")]
+[assembly: AssemblyDescription("Stripe.net is a sync/async .NET 4.5+ client, and a portable class library for stripe.com")]
 [assembly: AssemblyProduct("Stripe.net")]
-[assembly: AssemblyCopyright("Copyright (C) Jayme Davis 2016")]
+[assembly: AssemblyCopyright("Copyright © Jayme Davis")]
 [assembly: AssemblyVersion("6.7.0")]
