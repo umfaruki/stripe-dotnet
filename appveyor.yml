@@ -24,7 +24,7 @@ before_build:
 
 build:
   project: src\Stripe.sln
-  verbosity: minimal
+  verbosity: normal
 
 after_build:
 - cmd: ECHO ____________________________________
