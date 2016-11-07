@@ -14,31 +14,31 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 before_build:
-- cmd: ____________________________________
-- cmd: ____________________________________
-- cmd: STRIPE.NET _________________________ Restoring Stripe.net's dependency (Json.NET), and Stripe.Tests dependency (Machine.Specifications)
+- cmd: ECHO ____________________________________
+- cmd: ECHO ____________________________________
+- cmd: ECHO STRIPE.NET _________________________ Restoring Stripe.net's dependency (Json.NET), and Stripe.Tests dependency (Machine.Specifications)
   - nuget restore src\Stripe.sln
-- cmd: ____________________________________
-- cmd: ____________________________________
-- cmd: STRIPE.NET _________________________ Finished with dependencies. Building Stripe.net and Stripe.Tests ...
+- cmd: ECHO ____________________________________
+- cmd: ECHO ____________________________________
+- cmd: ECHO STRIPE.NET _________________________ Finished with dependencies. Building Stripe.net and Stripe.Tests ...
 
 build:
   project: src\Stripe.sln
 
 after_build:
-- cmd: ____________________________________
-- cmd: ____________________________________
-- cmd: STRIPE.NET _________________________ Completed building Stripe.net and Stripe.Tests!
+- cmd: ECHO ____________________________________
+- cmd: ECHO ____________________________________
+- cmd: ECHO STRIPE.NET _________________________ Completed building Stripe.net and Stripe.Tests!
 
 before_test:
-- cmd: ____________________________________
-- cmd: ____________________________________
-- cmd: STRIPE.NET _________________________ Running Stripe.net's Tests ...
+- cmd: ECHO ____________________________________
+- cmd: ECHO ____________________________________
+- cmd: ECHO STRIPE.NET _________________________ Running Stripe.net's Tests ...
 
 after_test:
-- cmd: ____________________________________
-- cmd: ____________________________________
-- cmd: STRIPE.NET _________________________ Stripe.net Tests Complete.
+- cmd: ECHO ____________________________________
+- cmd: ECHO ____________________________________
+- cmd: ECHO STRIPE.NET _________________________ Stripe.net Tests Complete.
 
 artifacts:
 - path: build
