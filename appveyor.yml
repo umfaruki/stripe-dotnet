@@ -17,7 +17,6 @@ before_build:
 - cmd: ____________________________________
 - cmd: ____________________________________
 - cmd: STRIPE.NET _________________________ Restoring Stripe.net's dependency (Json.NET), and Stripe.Tests dependency (Machine.Specifications)
-- cmd:
   - nuget restore src\Stripe.sln
 - cmd: ____________________________________
 - cmd: ____________________________________
