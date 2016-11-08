@@ -13,26 +13,14 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 
+install:
+  - ps: Import-Module .\build\build.psm1
+
 before_build:
-- cmd: nuget restore src\Stripe.sln
+  - nuget restore src\Stripe.sln
 
 build:
-  project: src\Stripe.sln
-  verbosity: quiet
-
-artifacts:
-- path: build
+  verbosity: minimal
 
 on_success:
-  - ps: |
-  if ($true)
-  {
-    Write-Host "Test"
-  }
-
-deploy:
-  provider: NuGet
-  api_key:
-    secure: thisLLNeverWork!==
-  verbosity: minimal
-  artifact: /.*\.nupkg/
+  - ps: Invoke-NugetCheck
