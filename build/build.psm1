@@ -1,4 +1,4 @@
-function New-LocalUser
+function Invoke-NuGetCheck
 {	
 	$headers = @{
 	  "Authorization" = "Bearer $env:token"
