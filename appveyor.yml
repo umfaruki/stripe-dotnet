@@ -20,7 +20,7 @@ before_build:
   - nuget restore src\Stripe.sln
 
 build:
-  verbosity: minimal
+  verbosity: quiet
 
 on_success:
   - ps: Invoke-NugetCheck
