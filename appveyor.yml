@@ -14,25 +14,21 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 before_build:
-- cmd: ECHO [stripe.net]  Restoring Stripe.net's dependency (Json.NET), and Stripe.Tests dependency (Machine.Specifications)
 - cmd: nuget restore src\Stripe.sln
-- cmd: ECHO [stripe.net]  Finished with dependencies. Building Stripe.net and Stripe.Tests ...
 
 build:
   project: src\Stripe.sln
   verbosity: quiet
 
-after_build:
-- cmd: ECHO [stripe.net]  Completed building Stripe.net and Stripe.Tests!
-
-before_test:
-- cmd: ECHO [stripe.net]  Running Stripe.net's Tests ...
-
 artifacts:
 - path: build
-- path: src
-- path: '**'
-  name: Stripe.net
+
+on_success:
+  - ps: |
+  if ($true)
+  {
+    Write-Host "Test"
+  }
 
 deploy:
   provider: NuGet
