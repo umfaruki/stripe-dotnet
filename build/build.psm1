@@ -23,10 +23,10 @@ function Invoke-Build
 
 	Write-Host " "
 	Write-Host $("NET45:      $missing_comments publicly visible items are missing XML comments") -ForegroundColor Cyan
-	Write-Host $("PORTABLE:   $missing_comments_portable publicly visible items are missing XML comments") -ForegroundColor Cyan
+	Write-Host $("PORTABLE:   $missing_comments_portable publicly visible items are missing XML comments") -ForegroundColor DarkCyan
 	Write-Host $("NET45:      $deprecated_types items are deprecated") -ForegroundColor Cyan
-	Write-Host $("PORTABLE:   $deprecated_types_portable items are deprecated") -ForegroundColor Cyan
-	Write-Host $("TESTS:      $tests_deprecated_types tests are targetting deprecated types") -ForegroundColor Cyan
+	Write-Host $("PORTABLE:   $deprecated_types_portable items are deprecated") -ForegroundColor DarkCyan
+	Write-Host $("TESTS:      $tests_deprecated_types tests are targetting deprecated types") -ForegroundColor DarkYellow
 
 	Write-Host "Finished build script"
 	Write-Host " "
