@@ -3,12 +3,12 @@ function Invoke-Build
 	Write-Host "Starting Build Script..."
 
 	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
-	
-	$missing_comments = 0;
+
+	$missing_comments = 0
 	$build | ForEach-Object { if ($_ -contains "warning CS1591") { $global:missing_comments++ } }
 	Write-Host "$($missing_comments) items are missing XML comments"
 
-	$deprecated_types = 0;
+	$deprecated_types = 0
 	$build | ForEach-Object { if ($_ -contains "warning CS0618") { $global:deprecated_types++ } }
 	Write-Host "$($deprecated_types) items are deprecated"
 
