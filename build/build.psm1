@@ -9,7 +9,7 @@ function Invoke-Build
 	Write-Host $missing_comments + " items are missing XML comments"
 
 	$deprecated_types = 0;
-	$build ForEach-Object { if ($_ -contains "warning CS0618") { $deprecated_types++ } }
+	$build | ForEach-Object { if ($_ -contains "warning CS0618") { $deprecated_types++ } }
 	Write-Host $deprecated_types + " items are deprecated"
 
 	Write-Host "Finished Build Script"
