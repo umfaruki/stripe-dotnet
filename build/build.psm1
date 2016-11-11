@@ -2,16 +2,23 @@ function Invoke-Build
 {
 	Write-Host "Starting Build Script..."
 
-	#$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
-	msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-	#Write-Host $build
-	#$missing_comments = 0
-	#$build | ForEach-Object { if ($_ -contains "warning CS1591") { $global:missing_comments++ } }
-	#Write-Host "$($missing_comments) items are missing XML comments"
+	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
 
-	#$deprecated_types = 0
-	#$build | ForEach-Object { if ($_ -contains "warning CS0618") { $global:deprecated_types++ } }
-	#Write-Host "$($deprecated_types) items are deprecated"
+	foreach($line in $build) {
+		if     (${line} -Match "warning CS1591" -and ${line} -Match "Stripe.csproj") { $missing_comments++ }
+		elseif (${line} -Match "warning CS0618" -and ${line} -Match "Stripe.csproj") { $deprecated_types++ }
+		elseif (${line} -Match "warning CS1591" -and ${line} -Match "Stripe.Portable.csproj") { $missing_comments_portable++ }
+		elseif (${line} -Match "warning CS0618" -and ${line} -Match "Stripe.Portable.csproj") { $deprecated_types_portable++ }
+		elseif (${line} -Match "warning CS0618" -and ${line} -Match "Stripe.Tests.csproj") { $tests_deprecated_types++ }
+		elseif (${line} -Match "warning CS0169" -and ${line} -Match "Stripe.Tests.csproj" -and ${line} -Match ".behaviors" ) { } # do nothing - this is just behaviors
+		elseif (${line}) { write-host ${line} }
+	}
+
+	Write-Host $("NET45:      $missing_comments publicly visible items are missing XML comments") -ForegroundColor Cyan
+	Write-Host $("PORTABLE:   $missing_comments_portable publicly visible items are missing XML comments") -ForegroundColor Cyan
+	Write-Host $("NET45:      $deprecated_types items are deprecated") -ForegroundColor Cyan
+	Write-Host $("PORTABLE:   $deprecated_types_portable items are deprecated") -ForegroundColor Cyan
+	Write-Host $("TESTS:      $tests_deprecated_types tests are targetting deprecated types") -ForegroundColor Cyan
 
 	Write-Host "Finished Build Script"
 }
