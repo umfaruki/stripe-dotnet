@@ -37,10 +37,10 @@ function Invoke-CopyOutput
 	Write-Host " "
 	Write-Host "Copying assemblies..."
 
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.dll .\build\net45\Stripe.net.dll /Y
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.xml .\build\net45\Stripe.net.xml /Y
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.dll .\build\portable\Stripe.net.dll /Y
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.xml .\build\portable\Stripe.net.xml /Y
+	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.dll .\build\net45\Stripe.net.dll
+	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.xml .\build\net45\Stripe.net.xml
+	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.dll .\build\portable\Stripe.net.dll
+	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.xml .\build\portable\Stripe.net.xml
 
 	Write-Host "Finished copying assemblies"
 	Write-Host " "
