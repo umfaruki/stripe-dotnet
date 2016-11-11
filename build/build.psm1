@@ -1,6 +1,17 @@
 function Invoke-Build
 {
-	(msbuild "src\Stripe.sln" /verbosity:detailed /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n" | ForEach-Object {if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
+	Write-Host "Starting Build Script..."
+
+	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String)
+	Write-Host $build | split "\n" | 
+		ForEach-Object 
+		{
+			# if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
+			Write-Host "$_"
+		}
+	#-split "\n" | ForEach-Object {if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
+
+	Write-Host "Finished Build Script"
 }
 
 function Invoke-NuGetCheck

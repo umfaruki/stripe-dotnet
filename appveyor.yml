@@ -23,4 +23,4 @@ build_script:
 - ps: Invoke-Build
 
 on_success:
-  - ps: Invoke-NugetCheck
+- ps: Invoke-NugetCheck
