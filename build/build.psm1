@@ -4,8 +4,14 @@ function Invoke-Build
 	msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String)
-	$build | split "\n" | ForEach-Object { if ($_.StartsWith("m", [System.StringComparison]::OrdinalIgnoreCase)) { Write-Host "$_" } }
-	#-split "\n" | ForEach-Object {if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
+	
+	$missing_comments = 0;
+	$build | split "\n" | ForEach-Object { if ($_ -contains "warning CS1591") { $missing_comments++ } }
+	Write-Host $missing_comments + " items are missing XML comments"
+
+	$deprecated_types = 0;
+	$build | split "\n" | ForEach-Object { if ($_ -contains "warning CS0618") { $deprecated_types++ } }
+	Write-Host $deprecated_types + " items are deprecated"
 
 	Write-Host "Finished Build Script"
 }
