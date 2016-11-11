@@ -24,3 +24,8 @@ build_script:
 
 on_success:
 - ps: Invoke-NugetCheck
+
+artifacts:
+  - path: build
+    name: build-folder
+    type: zip
