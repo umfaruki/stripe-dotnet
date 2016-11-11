@@ -2,9 +2,9 @@ function Invoke-Build
 {
 	Write-Host "Starting Build Script..."
 
-	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
-
-	Write-Host $build
+	#$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
+	msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+	#Write-Host $build
 	#$missing_comments = 0
 	#$build | ForEach-Object { if ($_ -contains "warning CS1591") { $global:missing_comments++ } }
 	#Write-Host "$($missing_comments) items are missing XML comments"
