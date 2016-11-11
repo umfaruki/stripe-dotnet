@@ -1,14 +1,10 @@
 function Invoke-Build
 {
 	Write-Host "Starting Build Script..."
+	msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String)
-	Write-Host $build | split "\n" | 
-		ForEach-Object 
-		{
-			# if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
-			Write-Host "$_"
-		}
+	$build | split "\n" | ForEach-Object { if ($_.StartsWith("m", [System.StringComparison]::OrdinalIgnoreCase)) { Write-Host "$_" } }
 	#-split "\n" | ForEach-Object {if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
 
 	Write-Host "Finished Build Script"
