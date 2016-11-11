@@ -1,7 +1,7 @@
 function Invoke-Build
 {
 	Write-Host " "
-	Write-Host "Starting build script..."
+	Write-Host "Running build script..."
 
 	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
 
@@ -37,10 +37,10 @@ function Invoke-CopyOutput
 	Write-Host " "
 	Write-Host "Copying assemblies..."
 
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.dll .\build\net45\Stripe.net.dll
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.xml .\build\net45\Stripe.net.xml
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.dll .\build\portable\Stripe.net.dll
-	Copy-Item $APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.xml .\build\portable\Stripe.net.xml
+	Copy-Item $env:APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.dll .\build\net45\Stripe.net.dll
+	Copy-Item $env:APPVEYOR_BUILD_FOLDER\src\Stripe\bin\Release\Stripe.net.xml .\build\net45\Stripe.net.xml
+	Copy-Item $env:APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.dll .\build\portable\Stripe.net.dll
+	Copy-Item $env:APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.xml .\build\portable\Stripe.net.xml
 
 	Write-Host "Finished copying assemblies"
 	Write-Host " "
@@ -76,7 +76,7 @@ function Invoke-NuGetCheck
 	$pushNuget = $false
 	for ($i = 0; $i -lt 3; $i++) {if ($previousVersionSplit[$i] -ne $currentVersionSplit[$i]) {write-host "at least one part changed, will push nuget"; $pushNuget = $true; break}}
  
-	nuget pack .\build\Stripe.net.nuspec
+	nuget pack  $env:APPVEYOR_BUILD_FOLDER\build\Stripe.net.nuspec
 
 	if(!$pushNuget) {
 	write-host "all parts are the same, will not push Nuget"
