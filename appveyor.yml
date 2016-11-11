@@ -19,8 +19,8 @@ install:
 before_build:
   - nuget restore src\Stripe.sln
 
-build:
-  verbosity: quiet
+build_script:
+- ps: Invoke-Build
 
 on_success:
   - ps: Invoke-NugetCheck

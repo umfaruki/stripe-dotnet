@@ -1,3 +1,8 @@
+function Invoke-Build
+{
+	(msbuild "src\Stripe.sln" /verbosity:detailed /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n" | ForEach-Object {if ($_.StartsWith("t", [System.StringComparison]::OrdinalIgnoreCase)) {write-host "$_"}}
+}
+
 function Invoke-NuGetCheck
 {	
 	$headers = @{
