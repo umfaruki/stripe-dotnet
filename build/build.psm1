@@ -1,8 +1,15 @@
 function Invoke-Build
 {
+	Write-Host " "
 	Write-Host "Starting Build Script..."
 
 	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
+
+	$missing_comments = 0
+	$missing_comments_portable = 0
+	$deprecated_types = 0
+	$deprecated_types_portable = 0
+	$tests_deprecated_types = 0
 
 	foreach($line in $build) {
 		if     (${line} -Match "warning CS1591" -and ${line} -Match "Stripe.csproj") { $missing_comments++ }
@@ -14,6 +21,7 @@ function Invoke-Build
 		elseif (${line}) { write-host ${line} }
 	}
 
+	Write-Host " "
 	Write-Host $("NET45:      $missing_comments publicly visible items are missing XML comments") -ForegroundColor Cyan
 	Write-Host $("PORTABLE:   $missing_comments_portable publicly visible items are missing XML comments") -ForegroundColor Cyan
 	Write-Host $("NET45:      $deprecated_types items are deprecated") -ForegroundColor Cyan
@@ -21,6 +29,7 @@ function Invoke-Build
 	Write-Host $("TESTS:      $tests_deprecated_types tests are targetting deprecated types") -ForegroundColor Cyan
 
 	Write-Host "Finished Build Script"
+	Write-Host " "
 }
 
 function Invoke-NuGetCheck
