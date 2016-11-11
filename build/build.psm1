@@ -1,23 +1,22 @@
 function Invoke-Build
 {
 	Write-Host "Starting Build Script..."
-	msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
-	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String)
+	$build = (msbuild "src\Stripe.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" | Out-String) -split "\n"
 	
 	$missing_comments = 0;
-	$build | split "\n" | ForEach-Object { if ($_ -contains "warning CS1591") { $missing_comments++ } }
+	$build | ForEach-Object { if ($_ -contains "warning CS1591") { $missing_comments++ } }
 	Write-Host $missing_comments + " items are missing XML comments"
 
 	$deprecated_types = 0;
-	$build | split "\n" | ForEach-Object { if ($_ -contains "warning CS0618") { $deprecated_types++ } }
+	$build ForEach-Object { if ($_ -contains "warning CS0618") { $deprecated_types++ } }
 	Write-Host $deprecated_types + " items are deprecated"
 
 	Write-Host "Finished Build Script"
 }
 
 function Invoke-NuGetCheck
-{	
+{
 	$headers = @{
 	  "Authorization" = "Bearer $env:token"
 	  "Content-type" = "application/json"
