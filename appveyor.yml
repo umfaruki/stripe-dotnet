@@ -14,13 +14,16 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 install:
-  - ps: Import-Module .\build\build.psm1
+- ps: Import-Module .\build\build.psm1
 
 before_build:
-  - nuget restore src\Stripe.sln
+- nuget restore src\Stripe.sln
 
 build_script:
 - ps: Invoke-Build
+
+after_build:
+- ps: Invoke-CopyOutput
 
 on_success:
 - ps: Invoke-NugetCheck
