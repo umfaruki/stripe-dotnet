@@ -26,9 +26,8 @@ function Invoke-Build
 	Write-Host $("PORTABLE:   $missing_comments_portable publicly visible items are missing XML comments") -ForegroundColor DarkCyan
 	Write-Host $("NET45:      $deprecated_types items are deprecated") -ForegroundColor Cyan
 	Write-Host $("PORTABLE:   $deprecated_types_portable items are deprecated") -ForegroundColor DarkCyan
-	Write-Host $("TESTS:      $tests_deprecated_types tests are targetting deprecated types") -ForegroundColor DarkYellow
+	Write-Host $("TESTS:      $tests_deprecated_types tests are targetting deprecated types") -ForegroundColor Yellow
 
-	Write-Host "Finished build script"
 	Write-Host " "
 }
 
@@ -42,7 +41,6 @@ function Invoke-CopyOutput
 	Copy-Item $env:APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.dll .\build\portable\Stripe.net.dll
 	Copy-Item $env:APPVEYOR_BUILD_FOLDER\src\Stripe.Portable\bin\Release\Stripe.net.xml .\build\portable\Stripe.net.xml
 
-	Write-Host "Finished copying assemblies"
 	Write-Host " "
 }
 
@@ -75,8 +73,8 @@ function Invoke-NuGetCheck
  
 	$pushNuget = $false
 	for ($i = 0; $i -lt 3; $i++) {if ($previousVersionSplit[$i] -ne $currentVersionSplit[$i]) {write-host "at least one part changed, will push nuget"; $pushNuget = $true; break}}
- 
-	nuget pack  $env:APPVEYOR_BUILD_FOLDER\build\Stripe.net.nuspec
+ 	
+	nuget pack $env:APPVEYOR_BUILD_FOLDER\build\Stripe.net.nuspec
 
 	if(!$pushNuget) {
 	write-host "all parts are the same, will not push Nuget"
@@ -84,6 +82,5 @@ function Invoke-NuGetCheck
 	# do "appveyor PushArtifact <your-nugetpackage.nupkg>" accordig to https://www.appveyor.com/docs/nuget/
 	}
 
-	Write-Host "Finished NuGet check"
 	Write-Host " "
 }
