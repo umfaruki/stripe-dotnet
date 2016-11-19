@@ -16,3 +16,6 @@ after_build:
 
 test_script:
 - dotnet test test\Stripe.Tests
+
+artifacts:
+- path: '**\*.nupkg'
