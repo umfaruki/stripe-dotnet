@@ -1,13 +1,15 @@
 version: 6.11.0.{build}
 image: Visual Studio 2015
-configuration: Release
 
 environment:
   stripe_test_secret_key:
     secure: +p/EWA8+0B64k7a88nb6ZiSTcv6TIukyhQQU2Ljf7jNVtwVZXhJtNf5LdemV7EuY
 
-before_build:
-- dotnet restore
+build_script:
+- dotnet build -c Release src\Stripe.net
 
-build:
-  verbosity: minimal
+after_build:
+- dotnet pack -c Release src\Stripe.net
+
+test_script:
+- dotnet test test\Stripe.Tests
