@@ -29,7 +29,7 @@
     }
   },
   "packOptions": {
-    "iconUrl": "https://pbs.twimg.com/profile_images/497432038492733440/eW6tXeq3.png",
+    "iconUrl": "http://i.imgur.com/UuBwQ33.png",
     "licenseUrl": "https://raw.github.com/jaymedavis/stripe.net/master/LICENSE",
     "owners": [ "Jayme Davis" ],
     "repository": {
@@ -41,5 +41,5 @@
     "tags": [ "stripe", "payment", "credit", "cards", "money", "gateway", "paypal", "braintree" ]
   },
   "title": "Stripe.net",
-  "version": "6.7.0"
+  "version": "6.11.0"
 }

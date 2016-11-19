@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Stripe.Infrastructure;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
 namespace Stripe
 {
-    public class StripeDispute : StripeObject
+    public class StripeDispute : StripeEntityWithId
     {
         [JsonProperty("object")]
         public string Object { get; set; }

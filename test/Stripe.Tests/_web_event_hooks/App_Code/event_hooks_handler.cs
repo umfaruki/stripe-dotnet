@@ -1,5 +1,5 @@
-﻿using System.Web;
-using System.IO;
+﻿using System.IO;
+using System.Web;
 
 namespace Stripe.Tests
 {
@@ -9,7 +9,7 @@ namespace Stripe.Tests
         {
             get { return true; }
         }
-
+        
         public void ProcessRequest(HttpContext context)
         {
             var json = new StreamReader(context.Request.InputStream).ReadToEnd();
@@ -21,7 +21,6 @@ namespace Stripe.Tests
                 case StripeEvents.ChargeRefunded:
                     var stripeCharge = Stripe.Mapper<StripeCharge>.MapFromJson(stripeEvent.Data.Object.ToString());
                     break;
-
                 case StripeEvents.ChargeDisputeCreated:
                     var stripeDispute = Stripe.Mapper<StripeDispute>.MapFromJson(stripeEvent.Data.Object.ToString());
                     break;
