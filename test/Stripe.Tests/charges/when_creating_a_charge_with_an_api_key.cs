@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿using System;
 using Machine.Specifications;
 
 namespace Stripe.Tests
@@ -13,7 +13,7 @@ namespace Stripe.Tests
 
         Establish context = () =>
         {
-            _stripeChargeService = new StripeChargeService(ConfigurationManager.AppSettings["StripeApiKey"]);
+            _stripeChargeService = new StripeChargeService(Environment.GetEnvironmentVariable("stripe_test_secret_key"));
             StripeChargeCreateOptions = test_data.stripe_charge_create_options.ValidCard();
         };
 

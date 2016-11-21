@@ -5,6 +5,7 @@ using Machine.Specifications;
 
 namespace Stripe.Tests
 {
+    [Tags("fileuploads")]
     public class when_listing_fileuploads
     {
         private static StripeFileUploadService _fileService;
@@ -14,11 +15,11 @@ namespace Stripe.Tests
         {
             _fileService = new StripeFileUploadService();
 
-            var fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
+            var fileStream = Helper.GetEmbeddedResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
             _fileService.Create("logo.png", fileStream, StripeFilePurpose.BusinessLogo);
-            var fileStream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
+            var fileStream2 = Helper.GetEmbeddedResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
             _fileService.Create("logo.png", fileStream2, StripeFilePurpose.BusinessLogo);
-            var fileStream3 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
+            var fileStream3 = Helper.GetEmbeddedResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
             _fileService.Create("logo.png", fileStream3, StripeFilePurpose.BusinessLogo);
         };
 

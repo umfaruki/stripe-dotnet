@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Linq;
 using Machine.Specifications;
 
@@ -23,7 +22,7 @@ namespace Stripe.Tests
             var _stripeCouponService = new StripeCouponService();
             StripeCoupon = _stripeCouponService.Create(test_data.stripe_coupon_create_options.Valid());
 
-            _stripeCustomerService = new StripeCustomerService(ConfigurationManager.AppSettings["StripeApiKey"]);
+            _stripeCustomerService = new StripeCustomerService(Environment.GetEnvironmentVariable("stripe_test_secret_key"));
             StripeCustomerCreateOptions = test_data.stripe_customer_create_options.ValidCard(StripePlan.Id, StripeCoupon.Id, DateTime.UtcNow.AddDays(5));
         };
 

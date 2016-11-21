@@ -4,6 +4,7 @@ using Machine.Specifications;
 
 namespace Stripe.Tests
 {
+    [Tags("fileuploads")]
     public class when_creating_a_file_upload
     {
         private static StripeFileUploadService _fileService;
@@ -14,7 +15,7 @@ namespace Stripe.Tests
         {
             _fileService = new StripeFileUploadService();
 
-            _fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
+            _fileStream = Helper.GetEmbeddedResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
         };
 
         Because of = () =>

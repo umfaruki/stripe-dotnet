@@ -3,6 +3,7 @@ using Machine.Specifications;
 
 namespace Stripe.Tests
 {
+    [Tags("fileuploads")]
     public class when_getting_a_file_upload
     {
         private static StripeFileUploadService _fileService;
@@ -13,7 +14,7 @@ namespace Stripe.Tests
         {
             _fileService = new StripeFileUploadService();
 
-            var fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
+            var fileStream = Helper.GetEmbeddedResourceStream("Stripe.Tests.fileuploads.test_data.logo.png");
             _initialFileUpload = _fileService.Create("logo.png", fileStream, StripeFilePurpose.BusinessLogo);
         };
 

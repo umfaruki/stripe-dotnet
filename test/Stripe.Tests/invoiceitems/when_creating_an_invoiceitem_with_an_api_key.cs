@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿using System;
 using Machine.Specifications;
 
 namespace Stripe.Tests
@@ -16,7 +16,7 @@ namespace Stripe.Tests
             var stripeCustomerService = new StripeCustomerService();
             var stripeCustomer = stripeCustomerService.Create(test_data.stripe_customer_create_options.ValidCard());
 
-            _stripeInvoiceItemService = new StripeInvoiceItemService(ConfigurationManager.AppSettings["StripeApiKey"]);
+            _stripeInvoiceItemService = new StripeInvoiceItemService(Environment.GetEnvironmentVariable("stripe_test_secret_key"));
             StripeInvoiceItemCreateOptions = test_data.stripe_invoiceitem_create_options.Valid(stripeCustomer.Id);
         };
 

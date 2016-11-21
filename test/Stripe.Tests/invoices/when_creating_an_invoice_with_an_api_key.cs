@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using Machine.Specifications;
 
@@ -24,7 +23,7 @@ namespace Stripe.Tests
             var stripeCustomerCreateOptions = test_data.stripe_customer_create_options.ValidCard(stripePlan.Id, stripeCoupon.Id);
             var stripeCustomer = stripeCustomerService.Create(stripeCustomerCreateOptions);
 
-            _stripeInvoiceService = new StripeInvoiceService(ConfigurationManager.AppSettings["StripeApiKey"]);
+            _stripeInvoiceService = new StripeInvoiceService(Environment.GetEnvironmentVariable("stripe_test_secret_key"));
             _stripeInvoiceList = _stripeInvoiceService.List(new StripeInvoiceListOptions { CustomerId = stripeCustomer.Id }).ToList();
         };
 

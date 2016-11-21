@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿using System;
 using Machine.Specifications;
 
 namespace Stripe.Tests
@@ -12,7 +12,7 @@ namespace Stripe.Tests
 
         Establish context = () =>
         {
-            _stripePlanService = new StripePlanService(ConfigurationManager.AppSettings["StripeApiKey"]);
+            _stripePlanService = new StripePlanService(Environment.GetEnvironmentVariable("stripe_test_secret_key"));
             StripePlanCreateOptions = test_data.stripe_plan_create_options.Valid();
         };
 

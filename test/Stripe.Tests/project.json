@@ -1,5 +1,10 @@
 {
   "testRunner": "mspec",
+  "buildOptions": {
+    "embed": [
+      "fileuploads/test_data/*.png"
+    ]
+  },
   "frameworks": {
     "net45": {
       "frameworkAssemblies": {
@@ -15,6 +20,14 @@
         "System.Data": "*",
         "System.Xml": "*",
         "System.Xml.Serialization": "*"
+      }
+    },
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.*",
+          "type":  "platform"  
+        }
       }
     }
   },

@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿using System;
 using Machine.Specifications;
 
 namespace Stripe.Tests
@@ -26,7 +26,7 @@ namespace Stripe.Tests
             _stripeOAuthTokenService = new StripeOAuthTokenService();
             _stripeOAuthTokeCreateOptions = new StripeOAuthTokenCreateOptions()
             {
-                ClientSecret = ConfigurationManager.AppSettings["StripeApiKey"],
+                ClientSecret = Environment.GetEnvironmentVariable("stripe_test_secret_key"),
                 Code = _code,
                 GrantType = "authorization_code"
             };
