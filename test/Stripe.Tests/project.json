@@ -6,35 +6,47 @@
     ]
   },
   "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1",
+          "type": "platform"
+        },
+        "Newtonsoft.Json": "9.0.1",
+        "dotnet-test-mspec": "*",
+        "Machine.Specifications": "0.11.0",
+        "Machine.Specifications.Should": "0.11.0"
+      }
+    },
     "net45": {
+      "buildOptions": {
+        "define": [ "NET45" ]
+      },
       "frameworkAssemblies": {
+        "Microsoft.CSharp": "*",
         "System.Configuration": "*",
         "System.Core": "*",
         "System.Net.Http": "*",
-        "System.Runtime.Remoting": "*",
+        "System.Net.Http.WebRequest": "*",
         "System.Web": "*",
-        "System.Web.Extensions": "*",
         "System.Xml.Linq": "*",
         "System.Data.DataSetExtensions": "*",
-        "Microsoft.CSharp": "*",
         "System.Data": "*",
-        "System.Xml": "*",
-        "System.Xml.Serialization": "*"
-      }
-    },
-    "netcoreapp1.0": {
+        "System.Xml": "*"
+      },
       "dependencies": {
-        "Microsoft.NETCore.App": {
-          "version": "1.*",
-          "type":  "platform"  
-        }
+        "Newtonsoft.Json": "9.0.1",
+        "dotnet-test-mspec": "*",
+        "Machine.Specifications": "0.11.0",
+        "Machine.Specifications.Should": "0.11.0"
       }
     }
   },
   "dependencies": {
-    "Machine.Specifications": "0.11.0",
-    "Machine.Specifications.Should": "0.11.0",
-    "dotnet-test-mspec": "*",
     "Stripe.net": {
       "version": "*",
       "target": "project"
