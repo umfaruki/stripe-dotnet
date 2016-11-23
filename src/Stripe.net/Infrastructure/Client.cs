@@ -30,7 +30,7 @@ namespace Stripe.Infrastructure
         {
             var langVersion = "4.5";
 
-#if !PORTABLE
+#if NET45
             langVersion = typeof(object).GetTypeInfo().Assembly.ImageRuntimeVersion;
 #endif
 
@@ -61,9 +61,11 @@ namespace Stripe.Infrastructure
         {
             var result = string.Empty;
 
-#if !PORTABLE
-            result += $"net45.platform: { Environment.OSVersion.VersionString }";
-            result += $", {getOperatingSystemInfo()}"; 
+#if NET45
+            result += $"net45.platform: { Environment.OSVersion.Platform }";
+            result += $", net45.service_pack: { Environment.OSVersion.ServicePack }";
+            result += $", net45.version: { Environment.OSVersion.Version }";
+            result += $", net45.version_string: { Environment.OSVersion.VersionString }";
 #else
             result += "portable.platform: ";
 
@@ -79,27 +81,5 @@ namespace Stripe.Infrastructure
 
             return result;
         }
-
-#if !PORTABLE
-        private string getOperatingSystemInfo()
-        {
-            var os = Environment.OSVersion;
-            var pid = os.Platform;
-
-            switch (pid)
-            {
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                case PlatformID.WinCE:
-                    return "OS: Windows";
-                case PlatformID.Unix:
-                    return "OS: Unix";
-                default:
-                    return "OS: Unknown";
-            }
-        }
-#endif
-
     }
 }

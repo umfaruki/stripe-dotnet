@@ -1,11 +1,24 @@
 {
   "authors": [ "Jayme Davis" ],
-  "dependencies": {
-    "Newtonsoft.Json": "9.0.1"
-  },
   "description": "Stripe.net is a sync/async .NET 4.5+ client, and a portable class library for stripe.com.",
   "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1",
+          "type": "platform"
+        },
+        "Newtonsoft.Json": "9.0.1"
+      }
+    },
     "net45": {
+      "buildOptions": {
+        "define": [ "NET45" ]
+      },
       "frameworkAssemblies": {
         "Microsoft.CSharp": "*",
         "System.Configuration": "*",
@@ -17,14 +30,15 @@
         "System.Data.DataSetExtensions": "*",
         "System.Data": "*",
         "System.Xml": "*"
+      },
+      "dependencies": {
+        "Newtonsoft.Json": "9.0.1"
       }
     },
     "netstandard1.1": {
-      "buildOptions": {
-        "define": [ "PORTABLE" ]
-      },
       "dependencies": {
-        "NETStandard.Library": "1.6.0"
+        "NETStandard.Library": "1.6.1",
+        "Newtonsoft.Json": "9.0.1"
       }
     }
   },
