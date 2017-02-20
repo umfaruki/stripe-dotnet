@@ -36,5 +36,11 @@ namespace Stripe
 
         [JsonProperty("[last_name]")]
         public string LastName { get; set; }
+
+        /// <summary>
+        /// An ID returned by a file upload with the purpose ‘identity_document’. This will be unset if you POST an empty value.
+        /// </summary>
+        [JsonProperty("[verification][document]")]
+        public string DocumentId { get; set; }
     }
 }

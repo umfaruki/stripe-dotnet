@@ -14,7 +14,8 @@
   "testRunner": "xunit",
   "buildOptions": {
     "emitEntryPoint": true,
-    "debugType": "portable"
+    "debugType": "portable",
+    "embed": [ "resources/*.png" ]
   },
   "frameworks": {
     "netcoreapp1.0": {
