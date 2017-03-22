@@ -1,6 +1,6 @@
-﻿namespace Stripe
-{
-    public class StripeShippingOptions : StripeShipping, INestedNamedOptions
-    {
-    }
-}
+﻿//namespace Stripe
+//{
+//    public class StripeShippingOptions : StripeShipping, INestedNamedOptions
+//    {
+//    }
+//}

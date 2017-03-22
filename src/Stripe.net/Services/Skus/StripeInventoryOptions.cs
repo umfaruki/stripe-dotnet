@@ -1,6 +1,6 @@
-﻿namespace Stripe
-{
-    public class StripeInventoryOptions : StripeInventory, INestedNamedOptions
-    {
-    }
-}
+﻿//namespace Stripe
+//{
+//    public class StripeInventoryOptions : StripeInventory, INestedNamedOptions
+//    {
+//    }
+//}
