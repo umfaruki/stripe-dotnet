@@ -30,8 +30,8 @@ after_build:
 - ps: Invoke-Pack
 
 artifacts:
-  - path: **\*\*.nupkg
-  - name: Stripe.net nuget package
+- path: **\*\*.nupkg
+- name: Stripe.net nuget package
 
 # these commands force appveyor to offer an RDP session for debugging
 #init:
