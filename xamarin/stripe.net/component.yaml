@@ -3,8 +3,6 @@
 id: stripe-net
 version: 9.0.0
 summary: .net bindings for stripe
-libraries:
-  ios-unified: ../lib/Stripe.net.dll
 icons: 
   - .\_128x128.png
   - .\_512x512.png
@@ -15,4 +13,18 @@ src-url: http://github.com/jaymedavis/stripe.net
 license: License.md
 name: Stripe.net
 publisher: Jayme Davis
+libraries:
+  android: ../lib/Stripe.net.dll
+  ios-unified: ../lib/Stripe.net.dll
+  mac-unified: ../lib/Stripe.net.dll
+  pcl: ../lib/Stripe.net.dll
+  uap: ../lib/Stripe.net.dll
+  wp8: ../lib/Stripe.net.dll
+  wp81: ../lib/Stripe.net.dll
+  wpa81: ../lib/Stripe.net.dll
+  win8: ../lib/Stripe.net.dll
+  winphone-8.0: ../lib/Stripe.net.dll
+  winphone-8.1: ../lib/Stripe.net.dll
+  winphoneapp-8.1: ../lib/Stripe.net.dll
+  winuniversal-10.0: ../lib/Stripe.net.dll
 ...
