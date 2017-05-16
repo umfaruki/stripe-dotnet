@@ -1,0 +1,18 @@
+%YAML 1.2
+---
+id: stripe-net
+version: 9.0.0
+summary: .net bindings for stripe
+libraries:
+  ios-unified: ../lib/Stripe.net.dll
+icons: 
+  - .\_128x128.png
+  - .\_512x512.png
+details: Details.md
+getting-started: GettingStarted.md
+publisher-url: http://github.com/jaymedavis
+src-url: http://github.com/jaymedavis/stripe.net
+license: License.md
+name: Stripe.net
+publisher: Jayme Davis
+...
