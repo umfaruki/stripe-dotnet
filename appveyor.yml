@@ -20,9 +20,9 @@ before_build:
 
 build_script:
   - dotnet build -c Release src\Stripe.net
-	- dotnet build -c Debug src\Stripe.net
-	- dotnet build src\Stripe.net.Tests -c Debug
-	- dotnet build src\Stripe.Tests.Xunit -c Debug
+  - dotnet build -c Debug src\Stripe.net
+  - dotnet build src\Stripe.net.Tests -c Debug
+  - dotnet build src\Stripe.Tests.Xunit -c Debug
 
 build:
   parallel: true
@@ -32,7 +32,7 @@ test_script:
   - dotnet test src\Stripe.net.Tests\Stripe.net.Tests.csproj
 
 after_build:
- - dotnet pack -c Release src\Stripe.net
+  - dotnet pack -c Release src\Stripe.net
 
 # these commands force appveyor to offer an RDP session for debugging
 #init:
