@@ -24,6 +24,7 @@ build_script:
 
 build:
   parallel: true
+  verbosity: detailed
 
 test_script:
   - dotnet test src\Stripe.Tests.XUnit\Stripe.Tests.XUnit.csproj
