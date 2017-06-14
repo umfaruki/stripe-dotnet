@@ -30,8 +30,16 @@ namespace Stripe.Infrastructure
         {
             var langVersion = "4.5";
 
-#if NET45
+#if (NET45 || NET451 || NET452)
             langVersion = typeof(object).GetTypeInfo().Assembly.ImageRuntimeVersion;
+#endif
+
+#if   NET45
+            langVersion += " net45";
+#elif NET451
+            langVersion += " net451";
+#elif NET452
+            langVersion += " net452";
 #endif
 
             var mono = testForMono();
