@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFrameworks>net452;netcoreapp1.0;netcoreapp1.1;</TargetFrameworks>
     <AssemblyName>Stripe.Tests.XUnit</AssemblyName>
     <PackageId>Stripe.Tests.XUnit</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
@@ -28,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Stripe.net\Stripe.net.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 
 </Project>
