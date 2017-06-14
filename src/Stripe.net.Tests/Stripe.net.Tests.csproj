@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
-    <TargetFrameworks>net45;netcoreapp1.0;netcoreapp1.1;</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp1.0;netcoreapp1.1;</TargetFrameworks>
     <AssemblyName>Stripe.net.Tests</AssemblyName>
     <PackageId>Stripe.net.Tests</PackageId>
     <RuntimeIdentifiers>win10-x64;win81-x64;osx.10.12-x64</RuntimeIdentifiers>
