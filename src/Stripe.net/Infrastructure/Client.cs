@@ -9,7 +9,7 @@ namespace Stripe.Infrastructure
 {
     internal class Client
     {
-        private HttpRequestMessage RequestMessage { get; set; }
+        private HttpRequestMessage RequestMessage { get; }
 
         public Client(HttpRequestMessage requestMessage)
         {

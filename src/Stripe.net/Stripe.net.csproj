@@ -10,6 +10,7 @@
     <AssemblyName>Stripe.net</AssemblyName>
     <PackageId>Stripe.net</PackageId>
     <PackageTags>stripe;payment;credit;cards;money;gateway;paypal;braintree</PackageTags>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81+xamarinmac</PackageTargetFallback>
     <PackageIconUrl>http://i.imgur.com/UuBwQ33.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/jaymedavis/stripe.net</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.github.com/jaymedavis/stripe.net/master/LICENSE</PackageLicenseUrl>

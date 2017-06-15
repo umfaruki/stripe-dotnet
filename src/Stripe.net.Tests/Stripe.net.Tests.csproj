@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <TargetFrameworks>net452;netcoreapp1.0;netcoreapp1.1;</TargetFrameworks>
     <AssemblyName>Stripe.net.Tests</AssemblyName>
     <PackageId>Stripe.net.Tests</PackageId>
