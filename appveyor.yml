@@ -13,21 +13,21 @@ deploy:
     branch: master
 
 before_build:
-  - ps: Write-Host $(" ")
-  - ps: Write-Host $("HOST INFORMATION") -BackgroundColor DarkCyan
-  - ps: Write-Host $(" ")
+  - echo
+  - echo "HOST INFORMATION"
+  - echo
   - dotnet --info
   - ps: Write-Host $("RESTORING PACKAGES FOR ALL FRAMEWORKS ...") -BackgroundColor DarkCyan
-  - dotnet restore src\
+  # - dotnet restore src\
 
 build_script:
   - ps: Write-Host $(" ")
   - ps: Write-Host $("BUILDING EVERYTHING ...") -BackgroundColor DarkCyan
   - ps: Write-Host $(" ")
-  - dotnet build -c Release src\Stripe.net
-  - dotnet build -c Debug src\Stripe.net
-  - dotnet build src\Stripe.net.Tests -c Debug
-  - dotnet build src\Stripe.Tests.Xunit -c Debug
+  # - dotnet build -c Release src\Stripe.net
+  # - dotnet build -c Debug src\Stripe.net
+  # - dotnet build src\Stripe.net.Tests -c Debug
+  # - dotnet build src\Stripe.Tests.Xunit -c Debug
 
 build:
   parallel: true
@@ -36,17 +36,17 @@ test_script:
   - ps: Write-Host $(" ")
   - ps: Write-Host $("RUNNING THE XUNIT TESTS ...") -BackgroundColor DarkCyan
   - ps: Write-Host $(" ")
-  - dotnet test src\Stripe.Tests.XUnit\Stripe.Tests.XUnit.csproj
+  # - dotnet test src\Stripe.Tests.XUnit\Stripe.Tests.XUnit.csproj
   - ps: Write-Host $(" ")
   - ps: Write-Host $("RUNNING THE MSPEC TESTS ...") -BackgroundColor DarkCyan
   - ps: Write-Host $(" ")
-  - dotnet test src\Stripe.net.Tests\Stripe.net.Tests.csproj
+  # - dotnet test src\Stripe.net.Tests\Stripe.net.Tests.csproj
 
 after_build:
   - ps: Write-Host $(" ")
   - ps: Write-Host $("PACKING UP ...") -BackgroundColor DarkCyan
   - ps: Write-Host $(" ")
-  - dotnet pack -c Release src\Stripe.net
+  # - dotnet pack -c Release src\Stripe.net
 
 # these commands tell appveyor to open an RDP session for debugging
 #init:
