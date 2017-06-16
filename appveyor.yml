@@ -13,7 +13,7 @@ deploy:
     branch: master
 
 before_build:
-  - ps: Write-Host $("\r\nHOST INFORMATION\r\n") -BackgroundColor DarkCyan
+  - ps: Write-Host $("`nHOST INFORMATION`n") -BackgroundColor DarkCyan
   - dotnet --info
   - ps: Write-Host $("\r\nRESTORING PACKAGES FOR ALL FRAMEWORKS ...\r\n") -BackgroundColor DarkCyan
   - dotnet restore src\
