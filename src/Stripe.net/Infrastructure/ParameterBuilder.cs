@@ -10,6 +10,11 @@ namespace Stripe.Infrastructure
 {
     internal static class ParameterBuilder
     {
+
+        public static string ApplyAllParameters(this StripeService service, object obj, string url) {
+            return ApplyAllParameters(service, obj, url, false);
+        }
+
         public static string ApplyAllParameters(this StripeService service, object obj, string url, bool isListMethod = false)
         {
             // store the original url from the service call into requestString (e.g. https://api.stripe.com/v1/accounts/account_id)
@@ -48,11 +53,6 @@ namespace Stripe.Infrastructure
                 {
                     string expandPropertyName = propertyName.Substring("Expand".Length);
                     expandPropertyName = Regex.Replace(expandPropertyName, "([a-z])([A-Z])", "$1_$2").ToLower();
-
-                    if (isListMethod)
-                    {
-                        expandPropertyName = "data." + expandPropertyName;
-                    }
 
                     requestString = ApplyParameterToUrl(requestString, "expand[]", expandPropertyName);
 
