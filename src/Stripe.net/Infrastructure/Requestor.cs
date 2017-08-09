@@ -26,8 +26,6 @@ namespace Stripe.Infrastructure
                 HttpClient.Timeout = StripeConfiguration.HttpTimeSpan.Value;
         }
 
-
-
         // Sync
         public static StripeResponse GetString(string url, StripeRequestOptions requestOptions)
         {
@@ -219,8 +217,8 @@ namespace Stripe.Infrastructure
 
         private static StripeException BuildStripeException(StripeResponse response, HttpStatusCode statusCode, string requestUri, string responseContent)
         {
-            var stripeError = requestUri.Contains("oauth") 
-                ? Mapper<StripeError>.MapFromJson(responseContent, null, response) 
+            var stripeError = requestUri.Contains("oauth")
+                ? Mapper<StripeError>.MapFromJson(responseContent, null, response)
                 : Mapper<StripeError>.MapFromJson(responseContent, "error", response);
 
             return new StripeException(statusCode, stripeError, stripeError.Message);

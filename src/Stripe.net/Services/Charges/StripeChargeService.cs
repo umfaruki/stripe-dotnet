@@ -22,33 +22,33 @@ namespace Stripe
         public bool ExpandOutcome { get; set; }
 
         //Sync
-        public virtual StripeCharge Create(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null)
+        public StripeCharge Create(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null)
         {
             return CreateAsync(createOptions, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeCharge Update(string chargeId, StripeChargeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
+        public StripeCharge Update(string chargeId, StripeChargeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
         {
 
             return UpdateAsync(chargeId, updateOptions, requestOptions, CancellationToken.None).Result;
 
         }
 
-        public virtual StripeCharge Get(string chargeId, StripeRequestOptions requestOptions = null)
+        public StripeCharge Get(string chargeId, StripeRequestOptions requestOptions = null)
         {
 
             return GetAsync(chargeId, requestOptions, CancellationToken.None).Result;
 
         }
 
-        public virtual StripeList<StripeCharge> List(StripeChargeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeCharge> List(StripeChargeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
 
             return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
 
         }
 
-        public virtual StripeCharge Capture(string chargeId, int? captureAmount = null, int? applicationFee = null, StripeRequestOptions requestOptions = null)
+        public StripeCharge Capture(string chargeId, int? captureAmount = null, int? applicationFee = null, StripeRequestOptions requestOptions = null)
         {
 
             return CaptureAsync(chargeId, captureAmount, applicationFee, requestOptions, CancellationToken.None).Result;
@@ -58,38 +58,38 @@ namespace Stripe
 
 
         //Async
-        public virtual Task<StripeCharge> CreateAsync(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCharge> CreateAsync(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return PostAsync(this.ApplyAllParameters(createOptions, $"{Urls.Charges}"), requestOptions, cancellationToken, null);
+            return PostAsync($"{Urls.Charges}", requestOptions, cancellationToken, createOptions);
 
         }
 
-        public virtual Task<StripeCharge> UpdateAsync(string chargeId, StripeChargeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCharge> UpdateAsync(string chargeId, StripeChargeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return PostAsync(this.ApplyAllParameters(updateOptions, $"{Urls.Charges}/{chargeId}"), requestOptions, cancellationToken, null);
+            return PostAsync($"{Urls.Charges}/{chargeId}", requestOptions, cancellationToken, updateOptions);
 
         }
 
-        public virtual Task<StripeCharge> GetAsync(string chargeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCharge> GetAsync(string chargeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return GetEntityAsync(this.ApplyAllParameters(null, $"{Urls.Charges}/{chargeId}"), requestOptions, cancellationToken, null);
+            return GetEntityAsync($"{Urls.Charges}/{chargeId}", requestOptions, cancellationToken, null);
 
         }
 
-        public virtual Task<StripeList<StripeCharge>> ListAsync(StripeChargeListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeCharge>> ListAsync(StripeChargeListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return GetEntityListAsync(this.ApplyAllParameters(listOptions, $"{Urls.Charges}"), requestOptions, cancellationToken, null);
+            return GetEntityListAsync($"{Urls.Charges}", requestOptions, cancellationToken, listOptions);
 
         }
 
-        public virtual Task<StripeCharge> CaptureAsync(string chargeId, int? captureAmount = null, int? applicationFee = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCharge> CaptureAsync(string chargeId, int? captureAmount = null, int? applicationFee = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            var url = this.ApplyAllParameters(null, $"{Urls.Charges}/{chargeId}/capture", false);
+            var url = this.ApplyAllParameters(null, $"{Urls.Charges}/{chargeId}/capture");
 
             if (captureAmount.HasValue)
                 url = ParameterBuilder.ApplyParameterToUrl(url, "amount", captureAmount.Value.ToString());

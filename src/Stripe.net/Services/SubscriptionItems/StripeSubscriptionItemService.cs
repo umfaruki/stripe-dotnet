@@ -9,58 +9,54 @@ namespace Stripe
     {
         public StripeSubscriptionItemService(string apiKey = null) : base(apiKey) { }
 
-
-
         // Sync
-        public virtual StripeSubscriptionItem Create(StripeSubscriptionItemCreateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeSubscriptionItem Create(StripeSubscriptionItemCreateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/subscription_items", requestOptions, options);
+            return CreateAsync(options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeSubscriptionItem Get(string subscriptionItemId, StripeRequestOptions requestOptions = null)
+        public StripeSubscriptionItem Get(string subscriptionItemId, StripeRequestOptions requestOptions = null)
         {
-            return GetEntity($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions);
+            return GetAsync(subscriptionItemId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeSubscriptionItem Update(string subscriptionItemId, StripeSubscriptionItemUpdateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeSubscriptionItem Update(string subscriptionItemId, StripeSubscriptionItemUpdateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, options);
+            return UpdateAsync(subscriptionItemId, options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeDeleted Delete(string subscriptionItemId, StripeRequestOptions requestOptions = null)
+        public StripeDeleted Delete(string subscriptionItemId, StripeRequestOptions requestOptions = null)
         {
-            return DeleteEntity($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions);
+            return DeleteAsync(subscriptionItemId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeSubscriptionItem> List(StripeSubscriptionItemListOptions options = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeSubscriptionItem> List(StripeSubscriptionItemListOptions options = null, StripeRequestOptions requestOptions = null)
         {
-            return GetEntityList($"{Urls.BaseUrl}/subscription_items", requestOptions, options);
+            return ListAsync(options, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         // Async
-        public virtual Task<StripeSubscriptionItem> CreateAsync(StripeSubscriptionItemCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeSubscriptionItem> CreateAsync(StripeSubscriptionItemCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return PostAsync($"{Urls.BaseUrl}/subscription_items", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeSubscriptionItem> GetAsync(string subscriptionItemId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeSubscriptionItem> GetAsync(string subscriptionItemId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetEntityAsync($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, cancellationToken);
+            return GetEntityAsync($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, cancellationToken, null);
         }
 
-        public virtual Task<StripeSubscriptionItem> UpdateAsync(string subscriptionItemId, StripeSubscriptionItemUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeSubscriptionItem> UpdateAsync(string subscriptionItemId, StripeSubscriptionItemUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return PostAsync($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeDeleted> DeleteAsync(string subscriptionItemId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeDeleted> DeleteAsync(string subscriptionItemId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return DeleteEntityAsync($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, cancellationToken);
         }
 
-        public virtual Task<StripeList<StripeSubscriptionItem>> ListAsync(StripeSubscriptionItemListOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeSubscriptionItem>> ListAsync(StripeSubscriptionItemListOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return GetEntityListAsync($"{Urls.BaseUrl}/subscription_items", requestOptions, cancellationToken, options);
         }

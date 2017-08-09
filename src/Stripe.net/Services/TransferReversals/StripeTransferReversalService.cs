@@ -12,48 +12,44 @@ namespace Stripe
         public bool ExpandBalanceTransaction { get; set; }
         public bool ExpandTransfer { get; set; }
 
-
-
         //Sync
-        public virtual StripeTransferReversal Create(string transferId, StripeTransferReversalCreateOptions options = null, StripeRequestOptions requestOptions = null)
+        public StripeTransferReversal Create(string transferId, StripeTransferReversalCreateOptions options = null, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/transfers/{transferId}/reversals", requestOptions, options);
-        }
-        
-        public virtual StripeTransferReversal Get(string transferId, string reversalId, StripeRequestOptions requestOptions = null)
-        {
-            return GetEntity($"{Urls.BaseUrl}/transfers/{transferId}/reversals/{reversalId}", requestOptions);
+            return CreateAsync(transferId, options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeTransferReversal Update(string transferId,  string reversalId, StripeTransferReversalUpdateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeTransferReversal Get(string transferId, string reversalId, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/transfers/{transferId}/reversals/{reversalId}", requestOptions, options);
+            return GetAsync(transferId, reversalId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeTransferReversal> List(string transferId, StripeListOptions options = null, StripeRequestOptions requestOptions = null)
+        public StripeTransferReversal Update(string transferId, string reversalId, StripeTransferReversalUpdateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return GetEntityList($"{Urls.BaseUrl}/transfers/{transferId}/reversals", requestOptions, options);
+            return UpdateAsync(transferId, reversalId, options, requestOptions, CancellationToken.None).Result;
         }
 
-
+        public StripeList<StripeTransferReversal> List(string transferId, StripeListOptions options = null, StripeRequestOptions requestOptions = null)
+        {
+            return ListAsync(transferId, options, requestOptions, CancellationToken.None).Result;
+        }
 
         // Async
-        public virtual Task<StripeTransferReversal> CreateAsync(string transferId, StripeTransferReversalCreateOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeTransferReversal> CreateAsync(string transferId, StripeTransferReversalCreateOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeTransferReversal> GetAsync(string transferId, string reversalId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeTransferReversal> GetAsync(string transferId, string reversalId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetEntityAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals/{reversalId}", requestOptions, cancellationToken);
+            return GetEntityAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals/{reversalId}", requestOptions, cancellationToken, null);
         }
 
-        public virtual Task<StripeTransferReversal> UpdateAsync(string transferId,  string reversalId, StripeTransferReversalUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeTransferReversal> UpdateAsync(string transferId,  string reversalId, StripeTransferReversalUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals/{reversalId}", requestOptions, cancellationToken, options);      
+            return PostEntityAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals/{reversalId}", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeList<StripeTransferReversal>> ListAsync(string transferId, StripeListOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeTransferReversal>> ListAsync(string transferId, StripeListOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return GetEntityListAsync($"{Urls.BaseUrl}/transfers/{transferId}/reversals", requestOptions, cancellationToken, options);
         }

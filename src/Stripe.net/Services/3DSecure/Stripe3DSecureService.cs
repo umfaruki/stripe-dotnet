@@ -11,17 +11,15 @@ namespace Stripe
         public Stripe3DSecureService(string apiKey = null) : base(apiKey) { }
 
         // Sync
-        public virtual Stripe3DSecure Create(Stripe3DSecureCreateOptions createOptions, StripeRequestOptions requestOptions = null)
+        public Stripe3DSecure Create(Stripe3DSecureCreateOptions createOptions, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/3d_secure", requestOptions, createOptions);
+            return CreateAsync(createOptions, requestOptions, CancellationToken.None).Result;
         }
 
-
-
         // Async
-        public virtual Task<Stripe3DSecure> CreateAsync(Stripe3DSecureCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<Stripe3DSecure> CreateAsync(Stripe3DSecureCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/3d_secure", requestOptions, cancellationToken, createOptions);
+            return PostEntityAsync($"{Urls.BaseUrl}/3d_secure", requestOptions, cancellationToken, createOptions);
         }
     }
 }

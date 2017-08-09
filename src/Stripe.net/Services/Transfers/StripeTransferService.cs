@@ -11,48 +11,44 @@ namespace Stripe
 
         public bool ExpandBalanceTransaction { get; set; }
 
-
-
         //Sync
-        public virtual StripeTransfer Create(StripeTransferCreateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeTransfer Create(StripeTransferCreateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/transfers", requestOptions, options);
+            return CreateAsync(options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeTransfer Get(string payoutId, StripeRequestOptions requestOptions = null)
+        public StripeTransfer Get(string payoutId, StripeRequestOptions requestOptions = null)
         {
-            return GetEntity($"{Urls.BaseUrl}/transfers/{payoutId}", requestOptions);
+            return GetAsync(payoutId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeTransfer Update(string transferId, StripeTransferUpdateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeTransfer Update(string transferId, StripeTransferUpdateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/transfers/{transferId}", requestOptions, options);
+            return UpdateAsync(transferId, options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeTransfer> List(StripeTransferListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeTransfer> List(StripeTransferListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return GetEntityList($"{Urls.BaseUrl}/transfers", requestOptions, listOptions);
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         // Async
-        public virtual Task<StripeTransfer> CreateAsync(StripeTransferCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeTransfer> CreateAsync(StripeTransferCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/transfers", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/transfers", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeTransfer> GetAsync(string payoutId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeTransfer> GetAsync(string payoutId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetEntityAsync($"{Urls.BaseUrl}/transfers/{payoutId}", requestOptions, cancellationToken);
+            return GetEntityAsync($"{Urls.BaseUrl}/transfers/{payoutId}", requestOptions, cancellationToken, null);
         }
 
-        public virtual Task<StripeTransfer> UpdateAsync(string transferId, StripeTransferUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeTransfer> UpdateAsync(string transferId, StripeTransferUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/transfers/{transferId}", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/transfers/{transferId}", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeList<StripeTransfer>> ListAsync(StripeTransferListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeTransfer>> ListAsync(StripeTransferListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return GetEntityListAsync($"{Urls.BaseUrl}/transfers", requestOptions, cancellationToken, listOptions);
         }

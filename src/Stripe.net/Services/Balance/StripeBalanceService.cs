@@ -6,7 +6,7 @@ using Stripe.Infrastructure;
 
 namespace Stripe
 {
-    public class StripeBalanceService : StripeService
+    public class StripeBalanceService : StripeBasicService<StripeBalanceTransaction>
     {
         public StripeBalanceService(string apiKey = null) : base(apiKey) { }
 
@@ -15,52 +15,46 @@ namespace Stripe
         //Sync
         public virtual StripeBalance Get(StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeBalance>.MapFromJson(
-                Requestor.GetString(Urls.Balance, SetupRequestOptions(requestOptions))
-            );
+
+            return GetAsync(requestOptions, CancellationToken.None).Result;
+
         }
 
-        public virtual StripeBalanceTransaction Get(string id, StripeRequestOptions requestOptions = null)
+        public virtual StripeBalanceTransaction Get(string balanceTransactionId, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeBalanceTransaction>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(null, $"{Urls.BalanceTransactions}/{id}", false),
-                SetupRequestOptions(requestOptions))
-            );
+
+            return GetAsync(balanceTransactionId, requestOptions, CancellationToken.None).Result;
+
         }
 
-        public virtual StripeList<StripeBalanceTransaction> List(StripeBalanceTransactionListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeBalanceTransaction> List(StripeBalanceTransactionListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeList<StripeBalanceTransaction>>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(listOptions, Urls.BalanceTransactions, true),
-                    SetupRequestOptions(requestOptions))
-            );
+
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
+
         }
 
 
         //Async
-        public virtual async Task<StripeBalance> GetAsync(StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeBalance> GetAsync(StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeBalance>.MapFromJson(
-                await Requestor.GetStringAsync(Urls.Balance, SetupRequestOptions(requestOptions), cancellationToken)
-            );
+
+            return GetEntityAsync($"{Urls.Balance}", requestOptions, cancellationToken, null, StripeBalance.GetType());
+
         }
 
-        public virtual async Task<StripeBalanceTransaction> GetAsync(string id, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeBalanceTransaction> GetAsync(string balanceTransactionId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeBalanceTransaction>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(null, $"{Urls.BalanceTransactions}/{id}", false),
-                SetupRequestOptions(requestOptions), 
-                cancellationToken)
-            );
+
+            return GetEntityAsync($"{Urls.Balance}/{balanceTransactionId}", requestOptions, cancellationToken, null);
+
         }
 
-        public virtual async Task<StripeList<StripeBalanceTransaction>> ListAsync(StripeBalanceTransactionListOptions options = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeBalanceTransaction>> ListAsync(StripeBalanceTransactionListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeList<StripeBalanceTransaction>>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(options, Urls.BalanceTransactions, true),
-                    SetupRequestOptions(requestOptions),
-                    cancellationToken)
-            );
+
+            return GetEntityListAsync($"{Urls.BalanceTransactions}", requestOptions, cancellationToken, listOptions);
+
         }
     }
 }

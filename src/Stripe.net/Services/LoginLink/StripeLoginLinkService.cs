@@ -15,8 +15,6 @@ namespace Stripe
             return CreateAsync(accountId, requestOptions, CancellationToken.None).Result;
         }
 
-
-
         // Async
         public virtual Task<StripeLoginLink> CreateAsync(string accountId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
