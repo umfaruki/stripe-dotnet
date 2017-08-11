@@ -38,7 +38,7 @@ namespace Stripe
         // Async
         public Task<StripeSubscriptionItem> CreateAsync(StripeSubscriptionItemCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/subscription_items", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/subscription_items", requestOptions, cancellationToken, options);
         }
 
         public Task<StripeSubscriptionItem> GetAsync(string subscriptionItemId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
@@ -48,7 +48,7 @@ namespace Stripe
 
         public Task<StripeSubscriptionItem> UpdateAsync(string subscriptionItemId, StripeSubscriptionItemUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/subscription_items/{subscriptionItemId}", requestOptions, cancellationToken, options);
         }
 
         public Task<StripeDeleted> DeleteAsync(string subscriptionItemId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))

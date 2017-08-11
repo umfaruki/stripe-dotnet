@@ -61,14 +61,14 @@ namespace Stripe
         public Task<StripeCharge> CreateAsync(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return PostAsync($"{Urls.Charges}", requestOptions, cancellationToken, createOptions);
+            return PostEntityAsync($"{Urls.Charges}", requestOptions, cancellationToken, createOptions);
 
         }
 
         public Task<StripeCharge> UpdateAsync(string chargeId, StripeChargeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return PostAsync($"{Urls.Charges}/{chargeId}", requestOptions, cancellationToken, updateOptions);
+            return PostEntityAsync($"{Urls.Charges}/{chargeId}", requestOptions, cancellationToken, updateOptions);
 
         }
 
@@ -96,7 +96,7 @@ namespace Stripe
             if (applicationFee.HasValue)
                 url = ParameterBuilder.ApplyParameterToUrl(url, "application_fee", applicationFee.Value.ToString());
 
-            return PostAsync(url, requestOptions, cancellationToken, null);
+            return PostEntityAsync(url, requestOptions, cancellationToken, null);
 
         }
     }
