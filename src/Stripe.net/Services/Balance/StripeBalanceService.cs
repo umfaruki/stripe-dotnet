@@ -36,10 +36,18 @@ namespace Stripe
 
 
         //Async
-        public Task<StripeBalance> GetAsync(StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<StripeBalance> GetAsync(StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return GetEntityAsync($"{Urls.Balance}", requestOptions, cancellationToken);
+            // TODO: This should be replaced with a generic.  Copy-and-pasted from the StripeBasicService class.
+
+            return Mapper<StripeBalance>.MapFromJson(
+                await Requestor.GetStringAsync(
+                    this.ApplyAllParameters(null, $"{Urls.Balance}"),
+                    SetupRequestOptions(requestOptions),
+                    cancellationToken
+                )
+            );
 
         }
 
