@@ -5,7 +5,7 @@ using Stripe.Infrastructure;
 
 namespace Stripe
 {
-    public class StripeEventService : StripeService
+    public class StripeEventService : StripeBasicService<StripeEvent>
     {
         public StripeEventService(string apiKey = null) : base(apiKey) { }
 

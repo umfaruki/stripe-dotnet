@@ -5,7 +5,7 @@ using Stripe.Infrastructure;
 
 namespace Stripe
 {
-    public class StripeCustomerService : StripeService
+    public class StripeCustomerService : StripeBasicService<StripeCustomer>
     {
         public StripeCustomerService(string apiKey = null) : base(apiKey) { }
 
