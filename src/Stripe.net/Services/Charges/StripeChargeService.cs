@@ -75,7 +75,7 @@ namespace Stripe
         public Task<StripeCharge> GetAsync(string chargeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return GetEntityAsync($"{Urls.Charges}/{chargeId}", requestOptions, cancellationToken, null);
+            return GetEntityAsync($"{Urls.Charges}/{chargeId}", requestOptions, cancellationToken);
 
         }
 

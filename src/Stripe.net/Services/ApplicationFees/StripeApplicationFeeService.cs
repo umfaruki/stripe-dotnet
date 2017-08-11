@@ -5,7 +5,7 @@ using Stripe.Infrastructure;
 
 namespace Stripe
 {
-    public class StripeApplicationFeeService : StripeService
+    public class StripeApplicationFeeService : StripeBasicService<StripeApplicationFee>
     {
         public StripeApplicationFeeService(string apiKey = null) : base(apiKey) { }
 
@@ -14,68 +14,40 @@ namespace Stripe
         public bool ExpandBalanceTransaction { get; set; }
         public bool ExpandCharge { get; set; }
 
-
-
         //Sync
-        public virtual StripeApplicationFee Get(string applicationFeeId, StripeRequestOptions requestOptions = null)
+        public StripeApplicationFee Get(string applicationFeeId, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeApplicationFee>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(null, $"{Urls.ApplicationFees}/{applicationFeeId}", false),
-                SetupRequestOptions(requestOptions))
-            );
+            return GetAsync(applicationFeeId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeApplicationFee Refund(string applicationFeeId, int? refundAmount = null, StripeRequestOptions requestOptions = null)
+        public StripeApplicationFee Refund(string applicationFeeId, int? refundAmount = null, StripeRequestOptions requestOptions = null)
         {
-            var url = this.ApplyAllParameters(null, $"{Urls.ApplicationFees}/{applicationFeeId}/refund", false);
-
-            if (refundAmount.HasValue)
-                url = ParameterBuilder.ApplyParameterToUrl(url, "amount", refundAmount.Value.ToString());
-
-            return Mapper<StripeApplicationFee>.MapFromJson(
-                Requestor.PostString(url, SetupRequestOptions(requestOptions))
-            );
+            return RefundAsync(applicationFeeId, refundAmount, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeApplicationFee> List(StripeApplicationFeeListOptions listOptions, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeApplicationFee> List(StripeApplicationFeeListOptions listOptions, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeList<StripeApplicationFee>>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(listOptions, Urls.ApplicationFees, true),
-                SetupRequestOptions(requestOptions))
-            );
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         //Async
-        public virtual async Task<StripeApplicationFee> GetAsync(string applicationFeeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeApplicationFee> GetAsync(string applicationFeeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeApplicationFee>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(null, $"{Urls.ApplicationFees}/{applicationFeeId}", false),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return GetEntityAsync($"{Urls.ApplicationFees}/{applicationFeeId}", requestOptions, cancellationToken);
         }
 
-        public virtual async Task<StripeApplicationFee> RefundAsync(string applicationFeeId, int? refundAmount = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeApplicationFee> RefundAsync(string applicationFeeId, int? refundAmount = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var url = this.ApplyAllParameters(null, $"{Urls.ApplicationFees}/{applicationFeeId}/refund", false);
-
+            var url = this.ApplyAllParameters(null, $"{Urls.ApplicationFees}/{applicationFeeId}/refund");
             if (refundAmount.HasValue)
                 url = ParameterBuilder.ApplyParameterToUrl(url, "amount", refundAmount.Value.ToString());
 
-            return Mapper<StripeApplicationFee>.MapFromJson(
-                await Requestor.PostStringAsync(url, SetupRequestOptions(requestOptions), cancellationToken)
-            );
+            return PostEntityAsync(url, requestOptions, cancellationToken);
         }
 
-        public virtual async Task<StripeList<StripeApplicationFee>> ListAsync(StripeApplicationFeeListOptions listOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeApplicationFee>> ListAsync(StripeApplicationFeeListOptions listOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeList<StripeApplicationFee>>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(listOptions, Urls.ApplicationFees, true),
-                SetupRequestOptions(requestOptions), 
-                cancellationToken)
-            );
+            return GetEntityListAsync($"{Urls.ApplicationFees}", requestOptions, cancellationToken, listOptions);
         }
     }
 }
