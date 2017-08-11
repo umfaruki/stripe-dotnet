@@ -9,95 +9,56 @@ namespace Stripe
     {
         public StripeCouponService(string apiKey = null) : base(apiKey) { }
 
-
-
         //Sync
-        public virtual StripeCoupon Create(StripeCouponCreateOptions createOptions, StripeRequestOptions requestOptions = null)
+        public StripeCoupon Create(StripeCouponCreateOptions createOptions, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeCoupon>.MapFromJson(
-                Requestor.PostString(this.ApplyAllParameters(createOptions, Urls.Coupons, false),
-                SetupRequestOptions(requestOptions))
-            );
+            return CreateAsync(createOptions, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeCoupon Update(string couponId, StripeCouponUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
+        public StripeCoupon Update(string couponId, StripeCouponUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeCoupon>.MapFromJson(
-                Requestor.PostString(this.ApplyAllParameters(updateOptions, $"{Urls.Coupons}/{couponId}", false),
-                SetupRequestOptions(requestOptions))
-            );
+            return UpdateAsync(couponId, updateOptions, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeCoupon Get(string couponId, StripeRequestOptions requestOptions = null)
+        public StripeCoupon Get(string couponId, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeCoupon>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(null, $"{Urls.Coupons}/{couponId}", false),
-                SetupRequestOptions(requestOptions))
-            );
+            return GetAsync(couponId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeDeleted Delete(string couponId, StripeRequestOptions requestOptions = null)
+        public StripeDeleted Delete(string couponId, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeDeleted>.MapFromJson(
-                Requestor.Delete(this.ApplyAllParameters(null, $"{Urls.Coupons}/{couponId}", false),
-                SetupRequestOptions(requestOptions))
-            );
+            return DeleteAsync(couponId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeCoupon> List(StripeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeCoupon> List(StripeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeList<StripeCoupon>>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(listOptions, Urls.Coupons, true),
-                SetupRequestOptions(requestOptions))
-            );
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         //Async
-        public virtual async Task<StripeCoupon> CreateAsync(StripeCouponCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCoupon> CreateAsync(StripeCouponCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeCoupon>.MapFromJson(
-                await Requestor.PostStringAsync(this.ApplyAllParameters(createOptions, Urls.Coupons, false),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return PostEntityAsync($"{Urls.Coupons}", requestOptions, cancellationToken, createOptions);
         }
 
-        public virtual async Task<StripeCoupon> UpdateAsync(string couponId, StripeCouponUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCoupon> UpdateAsync(string couponId, StripeCouponUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeCoupon>.MapFromJson(
-                await Requestor.PostStringAsync(this.ApplyAllParameters(updateOptions, $"{Urls.Coupons}/{couponId}", false),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return PostEntityAsync($"{Urls.Coupons}/{couponId}", requestOptions, cancellationToken, updateOptions);
         }
 
-        public virtual async Task<StripeCoupon> GetAsync(string couponId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeCoupon> GetAsync(string couponId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeCoupon>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(null, $"{Urls.Coupons}/{couponId}", false),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return GetEntityAsync($"{Urls.Coupons}/{couponId}", requestOptions, cancellationToken);
         }
 
-        public virtual async Task<StripeDeleted> DeleteAsync(string couponId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeDeleted> DeleteAsync(string couponId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeDeleted>.MapFromJson(
-                await Requestor.DeleteAsync(this.ApplyAllParameters(null, $"{Urls.Coupons}/{couponId}", false),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return DeleteEntityAsync($"{Urls.Coupons}/{couponId}", requestOptions, cancellationToken);
         }
 
-        public virtual async Task<StripeList<StripeCoupon>> ListAsync(StripeListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeCoupon>> ListAsync(StripeListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeList<StripeCoupon>>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(listOptions, Urls.Coupons, true),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return GetEntityListAsync($"{Urls.Coupons}", requestOptions, cancellationToken, listOptions);
         }
     }
 }
