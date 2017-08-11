@@ -10,14 +10,9 @@ namespace Stripe
     {
         protected StripeBasicService(string apiKey = null) : base(apiKey) { }
 
-        protected Task<EntityReturned> GetEntityAsync(string url, StripeRequestOptions requestOptions, CancellationToken cancellationToken, object options = null)
+        protected virtual async Task<EntityReturned> GetEntityAsync(string url, StripeRequestOptions requestOptions, CancellationToken cancellationToken, object options = null)
         {
-            return GetEntityAsync(url, requestOptions, cancellationToken, options, null);
-        }
-        protected virtual async Task<EntityReturned> GetEntityAsync(string url, StripeRequestOptions requestOptions, CancellationToken cancellationToken, object options = null, Type altReturnTypeClass = null)
-        {
-            Type returnedClass = altReturnTypeClass || EntityReturned;
-            return Mapper<returnedClass>.MapFromJson(
+            return Mapper<EntityReturned>.MapFromJson(
                 await Requestor.GetStringAsync(
                     this.ApplyAllParameters(options, url),
                     SetupRequestOptions(requestOptions),

@@ -13,47 +13,45 @@ namespace Stripe
         public bool ExpandCharge { get; set; }
 
         // Sync
-        public virtual StripeDispute Get(string disputeId, StripeRequestOptions requestOptions = null)
+        public StripeDispute Get(string disputeId, StripeRequestOptions requestOptions = null)
         {
-            return GetEntity($"{Urls.Disputes}/{disputeId}", requestOptions);
+            return GetAsync(disputeId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeDispute Update(string disputeId, StripeDisputeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
+        public StripeDispute Update(string disputeId, StripeDisputeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.Disputes}/{disputeId}", requestOptions, updateOptions);
+            return UpdateAsync(disputeId, updateOptions, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeDispute Close(string disputeId, StripeRequestOptions requestOptions = null)
+        public StripeDispute Close(string disputeId, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.Disputes}/{disputeId}/close", requestOptions);
+            return CloseAsync(disputeId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeDispute> List(StripeDisputeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeDispute> List(StripeDisputeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return GetEntityList(Urls.Disputes, requestOptions, listOptions);
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         // Async
-        public virtual async Task<StripeDispute> GetAsync(string disputeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeDispute> GetAsync(string disputeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await GetEntityAsync($"{Urls.Disputes}/{disputeId}", requestOptions, cancellationToken);
+            return GetEntityAsync($"{Urls.Disputes}/{disputeId}", requestOptions, cancellationToken);
         }
 
-        public virtual Task<StripeDispute> UpdateAsync(string disputeId, StripeDisputeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeDispute> UpdateAsync(string disputeId, StripeDisputeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.Disputes}/{disputeId}", requestOptions, cancellationToken, updateOptions);
+            return PostEntityAsync($"{Urls.Disputes}/{disputeId}", requestOptions, cancellationToken, updateOptions);
         }
 
-        public virtual async Task<StripeDispute> CloseAsync(string disputeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeDispute> CloseAsync(string disputeId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await PostAsync($"{Urls.Disputes}/{disputeId}/close", requestOptions, cancellationToken);
+            return PostEntityAsync($"{Urls.Disputes}/{disputeId}/close", requestOptions, cancellationToken);
         }
 
-        public virtual async Task<StripeList<StripeDispute>> ListAsync(StripeDisputeListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeDispute>> ListAsync(StripeDisputeListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await GetEntityListAsync(Urls.Disputes, requestOptions, cancellationToken, listOptions);
+            return GetEntityListAsync(Urls.Disputes, requestOptions, cancellationToken, listOptions);
         }
     }
 }

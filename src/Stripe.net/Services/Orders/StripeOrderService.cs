@@ -9,58 +9,54 @@ namespace Stripe
     {
         public StripeOrderService(string apiKey = null) : base(apiKey) { }
 
-
-
         // Sync
-        public virtual StripeOrder Create(StripeOrderCreateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeOrder Create(StripeOrderCreateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/orders", requestOptions, options);
+            return CreateAsync(options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeOrder Get(string orderId, StripeRequestOptions requestOptions = null)
+        public StripeOrder Get(string orderId, StripeRequestOptions requestOptions = null)
         {
-            return GetEntity($"{Urls.BaseUrl}/orders/{orderId}", requestOptions);
+            return GetAsync(orderId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeOrder Update(string orderId, StripeOrderUpdateOptions options, StripeRequestOptions requestOptions = null)
+        public StripeOrder Update(string orderId, StripeOrderUpdateOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/orders/{orderId}", requestOptions, options);
+            return UpdateAsync(orderId, options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeOrder Pay(string orderId, StripeOrderPayOptions options, StripeRequestOptions requestOptions = null)
+        public StripeOrder Pay(string orderId, StripeOrderPayOptions options, StripeRequestOptions requestOptions = null)
         {
-            return Post($"{Urls.BaseUrl}/orders/{orderId}/pay", requestOptions, options);
+            return PayAsync(orderId, options, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeOrder> List(StripeOrderListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeOrder> List(StripeOrderListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return GetEntityList($"{Urls.BaseUrl}/orders", requestOptions, listOptions);
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         // Async
-        public virtual Task<StripeOrder> CreateAsync(StripeOrderCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeOrder> CreateAsync(StripeOrderCreateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/orders", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/orders", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeOrder> GetAsync(string orderId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeOrder> GetAsync(string orderId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return GetEntityAsync($"{Urls.BaseUrl}/orders/{orderId}", requestOptions, cancellationToken);
         }
 
-        public virtual Task<StripeOrder> UpdateAsync(string orderId, StripeOrderUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeOrder> UpdateAsync(string orderId, StripeOrderUpdateOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/orders/{orderId}", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/orders/{orderId}", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeOrder> PayAsync(string orderId, StripeOrderPayOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeOrder> PayAsync(string orderId, StripeOrderPayOptions options, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return PostAsync($"{Urls.BaseUrl}/orders/{orderId}/pay", requestOptions, cancellationToken, options);
+            return PostEntityAsync($"{Urls.BaseUrl}/orders/{orderId}/pay", requestOptions, cancellationToken, options);
         }
 
-        public virtual Task<StripeList<StripeOrder>> ListAsync(StripeOrderListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeOrder>> ListAsync(StripeOrderListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return GetEntityListAsync($"{Urls.BaseUrl}/orders", requestOptions, cancellationToken, listOptions);
         }

@@ -39,14 +39,14 @@ namespace Stripe
         public Task<StripeBalance> GetAsync(StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return GetEntityAsync($"{Urls.Balance}", requestOptions, cancellationToken, null, StripeBalance.GetType());
+            return GetEntityAsync($"{Urls.Balance}", requestOptions, cancellationToken);
 
         }
 
         public Task<StripeBalanceTransaction> GetAsync(string balanceTransactionId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            return GetEntityAsync($"{Urls.Balance}/{balanceTransactionId}", requestOptions, cancellationToken, null);
+            return GetEntityAsync($"{Urls.Balance}/{balanceTransactionId}", requestOptions, cancellationToken);
 
         }
 
@@ -56,5 +56,6 @@ namespace Stripe
             return GetEntityListAsync($"{Urls.BalanceTransactions}", requestOptions, cancellationToken, listOptions);
 
         }
+
     }
 }

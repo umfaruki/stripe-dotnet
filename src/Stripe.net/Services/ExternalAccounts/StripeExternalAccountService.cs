@@ -10,18 +10,14 @@ namespace Stripe
     {
         public StripeExternalAccountService(string apiKey = null) : base(apiKey) { }
 
-
-
         // Sync
-        public virtual StripeDeleted Delete(string accountId, string externalAccountId, StripeRequestOptions requestOptions = null)
+        public StripeDeleted Delete(string accountId, string externalAccountId, StripeRequestOptions requestOptions = null)
         {
-            return DeleteEntity($"{Urls.BaseUrl}/accounts/{accountId}/external_accounts/{externalAccountId}", requestOptions);
+            return DeleteAsync(accountId, externalAccountId, requestOptions, CancellationToken.None).Result;
         }
 
-
-
         // Async
-        public virtual Task<StripeDeleted> DeleteAsync(string accountId, string externalAccountId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeDeleted> DeleteAsync(string accountId, string externalAccountId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return DeleteEntityAsync($"{Urls.BaseUrl}/accounts/{accountId}/external_accounts/{externalAccountId}", requestOptions, cancellationToken);
         }
