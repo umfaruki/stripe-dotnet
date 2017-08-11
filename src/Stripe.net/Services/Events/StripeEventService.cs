@@ -9,44 +9,26 @@ namespace Stripe
     {
         public StripeEventService(string apiKey = null) : base(apiKey) { }
 
-
-
         //Sync
-        public virtual StripeEvent Get(string eventId, StripeRequestOptions requestOptions = null)
+        public StripeEvent Get(string eventId, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeEvent>.MapFromJson(
-                Requestor.GetString($"{Urls.Events}/{eventId}",
-                SetupRequestOptions(requestOptions))
-            );
+            return GetAsync(eventId, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeList<StripeEvent> List(StripeEventListOptions listOptions = null, StripeRequestOptions requestOptions = null)
+        public StripeList<StripeEvent> List(StripeEventListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeList<StripeEvent>>.MapFromJson(
-                Requestor.GetString(this.ApplyAllParameters(listOptions, Urls.Events, true),
-                SetupRequestOptions(requestOptions))
-            );
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         //Async
-        public virtual async Task<StripeEvent> GetAsync(string eventId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeEvent> GetAsync(string eventId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeEvent>.MapFromJson(
-                await Requestor.GetStringAsync($"{Urls.Events}/{eventId}",
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return GetEntityAsync($"{Urls.Events}/{eventId}", requestOptions, cancellationToken);
         }
 
-        public virtual async Task<StripeList<StripeEvent>> ListAsync(StripeEventListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeList<StripeEvent>> ListAsync(StripeEventListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeList<StripeEvent>>.MapFromJson(
-                await Requestor.GetStringAsync(this.ApplyAllParameters(listOptions, Urls.Events, true),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return GetEntityListAsync($"{Urls.Events}", requestOptions, cancellationToken, listOptions);
         }
     }
 }
