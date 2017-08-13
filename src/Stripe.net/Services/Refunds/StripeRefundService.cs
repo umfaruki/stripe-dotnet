@@ -13,7 +13,6 @@ namespace Stripe
         public bool ExpandBalanceTransaction { get; set; }
         public bool ExpandCharge { get; set; }
 
-
         //Sync
         public virtual StripeRefund Create(string chargeId, StripeRefundCreateOptions createOptions = null, StripeRequestOptions requestOptions = null)
         {
