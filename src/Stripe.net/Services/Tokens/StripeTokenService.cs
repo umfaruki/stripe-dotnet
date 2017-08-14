@@ -4,48 +4,31 @@ using Stripe.Infrastructure;
 
 namespace Stripe
 {
-    public class StripeTokenService : StripeService
+    public class StripeTokenService : StripeBasicService<StripeToken>
     {
+
         public StripeTokenService(string apiKey = null) : base(apiKey) { }
 
-
-
         //Sync
-        public virtual StripeToken Create(StripeTokenCreateOptions createOptions, StripeRequestOptions requestOptions = null)
+        public StripeToken Create(StripeTokenCreateOptions createOptions, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeToken>.MapFromJson(
-                Requestor.PostString(this.ApplyAllParameters(createOptions, Urls.Tokens, false),
-                SetupRequestOptions(requestOptions))
-            );
+            return CreateAsync(createOptions, requestOptions, CancellationToken.None).Result;
         }
 
-        public virtual StripeToken Get(string tokenId, StripeRequestOptions requestOptions = null)
+        public StripeToken Get(string tokenId, StripeRequestOptions requestOptions = null)
         {
-            return Mapper<StripeToken>.MapFromJson(
-                Requestor.GetString($"{Urls.Tokens}/{tokenId}",
-                SetupRequestOptions(requestOptions))
-            );
+            return GetAsync(tokenId, requestOptions, CancellationToken.None).Result;
         }
-
-
 
         //Async
-        public virtual async Task<StripeToken> CreateAsync(StripeTokenCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeToken> CreateAsync(StripeTokenCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeToken>.MapFromJson(
-                await Requestor.PostStringAsync(this.ApplyAllParameters(createOptions, Urls.Tokens, false),
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return PostEntityAsync($"{Urls.Tokens}", requestOptions, cancellationToken, createOptions);
         }
 
-        public virtual async Task<StripeToken> GetAsync(string tokenId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<StripeToken> GetAsync(string tokenId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return Mapper<StripeToken>.MapFromJson(
-                await Requestor.GetStringAsync($"{Urls.Tokens}/{tokenId}",
-                SetupRequestOptions(requestOptions),
-                cancellationToken)
-            );
+            return GetEntityAsync($"{Urls.Tokens}/{tokenId}", requestOptions, cancellationToken);
         }
     }
 }
