@@ -15,7 +15,7 @@ namespace Stripe
         //Sync
         public StripeInvoice Get(string invoiceId, StripeRequestOptions requestOptions = null)
         {
-            GetAsync(invoiceId, requestOptions, CancellationToken.None).Result;
+            return GetAsync(invoiceId, requestOptions, CancellationToken.None).Result;
         }
 
         public StripeInvoice Upcoming(string customerId, StripeUpcomingInvoiceOptions upcomingOptions = null, StripeRequestOptions requestOptions = null)

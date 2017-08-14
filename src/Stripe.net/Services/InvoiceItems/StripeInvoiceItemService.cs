@@ -16,27 +16,27 @@ namespace Stripe
         //Sync
         public StripeInvoiceLineItem Create(StripeInvoiceItemCreateOptions createOptions, StripeRequestOptions requestOptions = null)
         {
-            return CreateAsync(createOptions, requestOptions, CancellationToken.None).Result
+            return CreateAsync(createOptions, requestOptions, CancellationToken.None).Result;
         }
 
         public StripeInvoiceLineItem Get(string invoiceItemId, StripeRequestOptions requestOptions = null)
         {
-            return GetAsync(invoiceItemId, requestOptions, CancellationToken.None).Result
+            return GetAsync(invoiceItemId, requestOptions, CancellationToken.None).Result;
         }
 
         public StripeInvoiceLineItem Update(string invoiceItemId, StripeInvoiceItemUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
         {
-            return UpdateAsync(invoiceItemId, updateOptions, requestOptions, CancellationToken.None).Result
+            return UpdateAsync(invoiceItemId, updateOptions, requestOptions, CancellationToken.None).Result;
         }
 
         public StripeDeleted Delete(string invoiceItemId, StripeRequestOptions requestOptions = null)
         {
-            return DeleteAsync(invoiceItemId, requestOptions, CancellationToken.None).Result
+            return DeleteAsync(invoiceItemId, requestOptions, CancellationToken.None).Result;
         }
 
         public StripeList<StripeInvoiceLineItem> List(StripeInvoiceItemListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
 
         //Async

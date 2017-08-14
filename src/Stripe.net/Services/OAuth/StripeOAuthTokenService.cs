@@ -19,12 +19,10 @@ namespace Stripe
             return DeauthorizeAsync(clientId, stripeUserId, requestOptions, CancellationToken.None).Result;
         }
 
-
-
         //Async
         public Task<StripeOAuthToken> CreateAsync(StripeOAuthTokenCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return CreateEntityAsync($"{Urls.OAuthToken}", requestOptions, cancellationToken, createOptions);
+            return PostEntityAsync($"{Urls.OAuthToken}", requestOptions, cancellationToken, createOptions);
         }
 
         public async Task<StripeOAuthDeauthorize> DeauthorizeAsync(string clientId, string stripeUserId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))

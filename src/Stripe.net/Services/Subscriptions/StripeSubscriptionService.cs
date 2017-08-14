@@ -68,7 +68,7 @@ namespace Stripe
         }
 
         private Task<StripeSubscription> CreateAsync(StripeSubscriptionCreateOptions createOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken)) {
-            return PostEntityAsync($"{Urls.Subscriptions}", requestOptions, cancelAtPeriodEnd, createOptions);
+            return PostEntityAsync($"{Urls.Subscriptions}", requestOptions, cancellationToken, createOptions);
         }
 
         public Task<StripeSubscription> UpdateAsync(string subscriptionId, StripeSubscriptionUpdateOptions updateOptions, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
@@ -76,11 +76,17 @@ namespace Stripe
             return PostEntityAsync($"{Urls.Subscriptions}/{subscriptionId}", requestOptions, cancellationToken, updateOptions);
         }
 
-        public Task<StripeSubscription> CancelAsync(string subscriptionId, bool cancelAtPeriodEnd = false, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<StripeSubscription> CancelAsync(string subscriptionId, bool cancelAtPeriodEnd = false, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var url = $"{Urls.Subscriptions}/{subscriptionId}";
+            // TODO: This returns a StripeSubscription rather than a StripeDeleted; so this is custom.  It should be made generic though.
+            var url = string.Format(Urls.Subscriptions + "/{0}", subscriptionId);
             url = ParameterBuilder.ApplyParameterToUrl(url, "at_period_end", cancelAtPeriodEnd.ToString());
-            return DeleteEntityAsync(url, requestOptions, cancellationToken);
+
+            return Mapper<StripeSubscription>.MapFromJson(
+                await Requestor.DeleteAsync(url,
+                SetupRequestOptions(requestOptions),
+                cancellationToken)
+            );
         }
 
         public Task<StripeList<StripeSubscription>> ListAsync(StripeSubscriptionListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))

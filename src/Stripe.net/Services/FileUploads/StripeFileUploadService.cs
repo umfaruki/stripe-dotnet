@@ -18,12 +18,12 @@ namespace Stripe
 
         public StripeFileUpload Get(string fileUploadId, StripeRequestOptions requestOptions = null)
         {
-            return GetAsync(fileUploadId, requestOptions, CancellationToken.None).Result
+            return GetAsync(fileUploadId, requestOptions, CancellationToken.None).Result;
         }
 
         public StripeList<StripeFileUpload> List(StripeFileUploadListOptions listOptions = null, StripeRequestOptions requestOptions = null)
         {
-            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result
+            return ListAsync(listOptions, requestOptions, CancellationToken.None).Result;
         }
 
 
@@ -39,7 +39,7 @@ namespace Stripe
 
         public Task<StripeFileUpload> GetAsync(string fileUploadId, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return GetEntityListAsync($"{Urls.FileUploads}/{fileUploadId}", requestOptions, cancellationToken);
+            return GetEntityAsync($"{Urls.FileUploads}/{fileUploadId}", requestOptions, cancellationToken);
         }
 
         public Task<StripeList<StripeFileUpload>> ListAsync(StripeFileUploadListOptions listOptions = null, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
