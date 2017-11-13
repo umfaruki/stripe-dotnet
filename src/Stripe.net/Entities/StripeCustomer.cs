@@ -20,7 +20,7 @@ namespace Stripe
         /// Warning: this is not in the documentation
         /// </summary>
         [JsonProperty("bank_accounts")]
-        public StripeList<CustomerBankAccount> CustomerBankAccounts { get; set; }
+        public StripeList<StripeBankAccount> CustomerBankAccounts { get; set; }
 
         /// <summary>
         /// The customer’s VAT identification number
@@ -48,14 +48,14 @@ namespace Stripe
         /// Warning: this is not in the documentation
         /// </summary>
         [JsonIgnore]
-        public CustomerBankAccount DefaultCustomerBankAccount { get; set; }
+        public StripeBankAccount DefaultCustomerBankAccount { get; set; }
 
         [JsonProperty("default_bank_account")]
         internal object InternalDefaultCustomerBankAccount
         {
             set
             {
-                StringOrObject<CustomerBankAccount>.Map(value, s => DefaultCustomerBankAccountId = s, o => DefaultCustomerBankAccount = o);
+                StringOrObject<StripeBankAccount>.Map(value, s => DefaultCustomerBankAccountId = s, o => DefaultCustomerBankAccount = o);
             }
         }
         #endregion

@@ -7,15 +7,15 @@ namespace Stripe.Tests
     public class when_listing_bank_accounts
     {
         private static StripeCustomer _stripeCustomer;
-        private static BankAccountService _bankAccountService;
-        private static BankAccountCreateOptions _bankAccountCreateOptions;
-        private static List<CustomerBankAccount> _bankAccountList = new List<CustomerBankAccount>(); 
+        private static StripeBankAccountService _bankAccountService;
+        private static StripeBankAccountCreateOptions _bankAccountCreateOptions;
+        private static List<StripeBankAccount> _bankAccountList = new List<StripeBankAccount>(); 
 
         Establish context = () =>
         {
             _stripeCustomer = new StripeCustomerService().Create(test_data.stripe_customer_create_options.ValidCard());
 
-            _bankAccountService = new BankAccountService();
+            _bankAccountService = new StripeBankAccountService();
 
             _bankAccountCreateOptions = test_data.bank_account_create_options.ValidBankAccount();
 

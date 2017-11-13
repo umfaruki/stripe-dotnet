@@ -6,20 +6,20 @@ namespace Stripe.Tests
     public class when_updating_a_bank_account
     {
         private static StripeCustomer _stripeCustomer;
-        private static BankAccountService _bankAccountService;
-        private static BankAccountUpdateOptions _bankAccountUpdateOptions;
-        private static CustomerBankAccount _customerBankAccount;
-        private static CustomerBankAccount _updatedBankAccount;
+        private static StripeBankAccountService _bankAccountService;
+        private static StripeBankAccountUpdateOptions _bankAccountUpdateOptions;
+        private static StripeBankAccount _customerBankAccount;
+        private static StripeBankAccount _updatedBankAccount;
 
         Establish context = () =>
         {
             _stripeCustomer = new StripeCustomerService().Create(test_data.stripe_customer_create_options.ValidCard());
 
-            _bankAccountService = new BankAccountService();
+            _bankAccountService = new StripeBankAccountService();
 
             _customerBankAccount = _bankAccountService.Create(_stripeCustomer.Id, test_data.bank_account_create_options.ValidBankAccount());
 
-            _bankAccountUpdateOptions = new BankAccountUpdateOptions()
+            _bankAccountUpdateOptions = new StripeBankAccountUpdateOptions()
             {
                 AccountHolderName = "Robert",
                 AccountHolderType = BankAccountHolderType.Individual,

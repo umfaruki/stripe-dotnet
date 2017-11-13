@@ -2,7 +2,7 @@
 
 namespace Stripe
 {
-    public class BankAccountCreateOptions
+    public class StripeBankAccountCreateOptions
     {
         [JsonProperty("source")]
         public string SourceToken { get; set; }

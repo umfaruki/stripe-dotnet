@@ -4,9 +4,9 @@ namespace Stripe.Tests.test_data
 {
     public static class bank_account_create_options
     {
-        public static BankAccountCreateOptions ValidBankAccount()
+        public static StripeBankAccountCreateOptions ValidBankAccount()
         {
-            return new BankAccountCreateOptions
+            return new StripeBankAccountCreateOptions
             {
                 SourceBankAccount = new SourceBankAccount()
                 {

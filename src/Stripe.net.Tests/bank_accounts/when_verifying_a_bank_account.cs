@@ -5,16 +5,16 @@ namespace Stripe.Tests
     public class when_verifying_a_bank_account
     {
         private static StripeCustomer _stripeCustomer;
-        private static BankAccountService _bankAccountService;
-        private static BankAccountCreateOptions _bankAccountCreateOptions;
-        private static CustomerBankAccount _customerBankAccount;
-        private static CustomerBankAccount _retrievedBankAccount;
+        private static StripeBankAccountService _bankAccountService;
+        private static StripeBankAccountCreateOptions _bankAccountCreateOptions;
+        private static StripeBankAccount _customerBankAccount;
+        private static StripeBankAccount _retrievedBankAccount;
 
         Establish context = () =>
         {
             _stripeCustomer = new StripeCustomerService().Create(test_data.stripe_customer_create_options.ValidCard());
 
-            _bankAccountService = new BankAccountService();
+            _bankAccountService = new StripeBankAccountService();
 
             _bankAccountCreateOptions = test_data.bank_account_create_options.ValidBankAccount();
 
@@ -22,7 +22,7 @@ namespace Stripe.Tests
         };
 
         Because of = () =>
-            _retrievedBankAccount = _bankAccountService.Verify(_customerBankAccount.CustomerId, _customerBankAccount.Id, new BankAccountVerifyOptions() { AmountOne = 32, AmountTwo = 45 });
+            _retrievedBankAccount = _bankAccountService.Verify(_customerBankAccount.CustomerId, _customerBankAccount.Id, new StripeBankAccountVerifyOptions() { AmountOne = 32, AmountTwo = 45 });
 
         It should_not_be_null = () =>
             _retrievedBankAccount.ShouldNotBeNull();

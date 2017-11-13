@@ -16,7 +16,7 @@ namespace Stripe.Tests
             });
 
             // create the bank account, and then verify that bank account
-            var createdBankAccount = new BankAccountService().Create(_stripeCustomer.Id, new BankAccountCreateOptions()
+            var createdBankAccount = new StripeBankAccountService().Create(_stripeCustomer.Id, new StripeBankAccountCreateOptions()
             {
                 SourceBankAccount = new SourceBankAccount()
                 {
@@ -31,7 +31,7 @@ namespace Stripe.Tests
 
             // these are the test amounts you plugin for testing with Stripe. in a real life scenario, you would 
             // have your customer verify this from the deposits
-            var verifiedBankAccount = new BankAccountService().Verify(_stripeCustomer.Id, createdBankAccount.Id, new BankAccountVerifyOptions()
+            var verifiedBankAccount = new StripeBankAccountService().Verify(_stripeCustomer.Id, createdBankAccount.Id, new StripeBankAccountVerifyOptions()
             {
                 AmountOne = 32,
                 AmountTwo = 45
