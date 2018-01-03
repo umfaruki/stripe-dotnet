@@ -12,7 +12,7 @@ namespace Stripe
         public string AccountHolderName { get; set; }
 
         [JsonProperty("source[account_holder_type]")]
-        public string AccountHolderType { get; set; }
+        public BankAccountHolderType? AccountHolderType { get; set; }
 
         [JsonProperty("source[account_number]")]
         public string AccountNumber { get; set; }

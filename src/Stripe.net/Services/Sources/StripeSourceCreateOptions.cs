@@ -91,6 +91,6 @@ namespace Stripe
         /// One of <see cref="StripeSourceUsage" />. Whether this source should be reusable or not. Some source types may or may not be reusable by construction, while other may leave the option at creation. If an incompatible value is passed, an error will be returned.
         /// </summary>
         [JsonProperty("usage")]
-        public string Usage { get; set; }
+        public StripeSourceUsage? Usage { get; set; }
     }
 }

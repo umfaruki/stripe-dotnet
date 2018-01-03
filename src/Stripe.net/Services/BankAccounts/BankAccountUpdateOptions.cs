@@ -9,7 +9,7 @@ namespace Stripe
         public string AccountHolderName { get; set; }
 
         [JsonProperty("account_holder_type")]
-        public string AccountHolderType { get; set; }
+        public BankAccountHolderType? AccountHolderType { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }

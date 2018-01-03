@@ -10,7 +10,7 @@ public class BankAccountOptions : INestedOptions
     public string AccountHolderName { get; set; }
 
     [JsonProperty("bank_account[account_holder_type]")]
-    public string AccountHolderType { get; set; }
+    public BankAccountHolderType? AccountHolderType { get; set; }
 
     [JsonProperty("bank_account[account_number]")]
     public string AccountNumber { get; set; }

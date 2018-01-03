@@ -80,7 +80,7 @@ namespace Stripe
         public StripeTermsOfServiceAcceptance TermsOfServiceAcceptance { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public StripeAccountType? Type { get; set; }
 
         [JsonProperty("payouts_enabled")]
         public bool PayoutsEnabled { get; set; }

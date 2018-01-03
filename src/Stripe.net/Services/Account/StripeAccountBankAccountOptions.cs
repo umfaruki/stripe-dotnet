@@ -21,7 +21,7 @@ namespace Stripe
         public string Currency { get; set; }
 
         [JsonProperty("external_account[account_holder_type]")]
-        public string AccountHolderType { get; set; }
+        public BankAccountHolderType? AccountHolderType { get; set; }
 
         [JsonProperty("external_account[account_holder_name]")]
         public string AccountHolderName { get; set; }

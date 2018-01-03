@@ -14,7 +14,7 @@ namespace Stripe
         public DateTime Created { get; set; }
 
         [JsonProperty("purpose")]
-        public string Purpose { get; set; }
+        public StripeFilePurpose? Purpose { get; set; }
 
         [JsonProperty("size")]
         public int Size { get; set; }

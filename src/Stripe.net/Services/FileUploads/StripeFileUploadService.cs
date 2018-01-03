@@ -13,7 +13,7 @@ namespace Stripe
 
 
         //Sync
-        public virtual StripeFileUpload Create(string fileName, Stream fileStream, string purpose, StripeRequestOptions requestOptions = null)
+        public virtual StripeFileUpload Create(string fileName, Stream fileStream, StripeFilePurpose purpose, StripeRequestOptions requestOptions = null)
         {
             return Mapper<StripeFileUpload>.MapFromJson(
                 Requestor.PostFile(Urls.FileUploads, fileName, fileStream, purpose, SetupRequestOptions(requestOptions))
@@ -43,7 +43,7 @@ namespace Stripe
 
 
         //Async
-        public virtual async Task<StripeFileUpload> CreateAsync(string fileName, Stream fileStream, string purpose, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual async Task<StripeFileUpload> CreateAsync(string fileName, Stream fileStream, StripeFilePurpose purpose, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Mapper<StripeFileUpload>.MapFromJson(
                 await Requestor.PostFileAsync(Urls.FileUploads, fileName, fileStream, purpose, SetupRequestOptions(requestOptions), cancellationToken)

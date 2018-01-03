@@ -3,16 +3,16 @@ using Xunit;
 
 namespace Stripe.Tests.Xunit
 {
-    public class creating_reusable_card_source
+    public class creating_single_use_card_source
     {
         private StripeSource Source { get; set; }
 
-        public creating_reusable_card_source()
+        public creating_single_use_card_source()
         {
             var options = new StripeSourceCreateOptions
             {
                 Type = StripeSourceType.Card,
-                Usage = StripeSourceUsage.Reusable,
+                Usage = StripeSourceUsage.SingleUse,
                 Token = "tok_visa",
             };
 
@@ -24,7 +24,7 @@ namespace Stripe.Tests.Xunit
         {
             Source.Should().NotBeNull();
             Source.Card.Should().NotBeNull();
-            Source.Usage.Should().Be(StripeSourceUsage.Reusable);
+            Source.Usage.Should().Be(StripeSourceUsage.SingleUse);
         }
     }
 }
