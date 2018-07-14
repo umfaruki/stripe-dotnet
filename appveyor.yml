@@ -5,6 +5,8 @@ environment:
   STRIPE_TEST_SK: sk_test_eBgAzVoEpJKfYjD9nf2YoyMM
   # If you bump this, don't forget to bump `MinimumMockVersion` in `BaseStripeTest.cs` as well.
   STRIPE_MOCK_VERSION: 0.19.0
+  COVERALLS_REPO_TOKEN:
+    secure: T0PmP8uyzCseacBCDRBlti2y9Tz5DL6fknea0MKWvbPYrzADmLY2/5kOTfYIsPUk
 
 deploy:
 - provider: NuGet
@@ -50,12 +52,13 @@ after_build:
   - dotnet pack -c Release src\Stripe.net
 
 test_script:
-  - ps: Write-Host $("`n               RUNNING THE NEW XUNIT + STRIPE-MOCK TESTS               `n") -BackgroundColor DarkCyan
-  - dotnet test src\StripeTests\StripeTests.csproj
-  - ps: Write-Host $("`n               RUNNING THE XUNIT TESTS               `n") -BackgroundColor DarkCyan
-  - dotnet test src\Stripe.Tests.XUnit\Stripe.Tests.XUnit.csproj
-  - ps: Write-Host $("`n               RUNNING THE MSPEC TESTS               `n") -BackgroundColor DarkCyan
-  - dotnet test src\Stripe.net.Tests\Stripe.net.Tests.csproj /p:TargetFramework=net46
+  - ps: |
+      Write-Host $("`n               RUNNING THE NEW XUNIT + STRIPE-MOCK TESTS               `n") -BackgroundColor DarkCyan
+      dotnet test src\StripeTests\StripeTests.csproj /p:CollectCoverage=true
+      Write-Host $("`n               RUNNING THE XUNIT TESTS               `n") -BackgroundColor DarkCyan
+      dotnet test src\Stripe.Tests.XUnit\Stripe.Tests.XUnit.csproj
+      Write-Host $("`n               RUNNING THE MSPEC TESTS               `n") -BackgroundColor DarkCyan
+      dotnet test src\Stripe.net.Tests\Stripe.net.Tests.csproj /p:TargetFramework=net46
 
 artifacts:
   - path: '**\*.nupkg'
