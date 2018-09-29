@@ -21,48 +21,7 @@ namespace Stripe
 
         public string ApiKey { get; set; }
 
-        // TODO: make abstract to force services to implement this
-        public virtual string BasePath { get; }
-
-        public virtual EntityReturned DeleteEntity(string url, RequestOptions requestOptions, BaseOptions options = null)
-        {
-            return this.DeleteRequest<EntityReturned>(url, options, requestOptions);
-        }
-
-        public Task<EntityReturned> DeleteEntityAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken, BaseOptions options = null)
-        {
-            return this.DeleteRequestAsync<EntityReturned>(url, options, requestOptions, cancellationToken);
-        }
-
-        public EntityReturned GetEntity(string url, RequestOptions requestOptions, BaseOptions options = null)
-        {
-            return this.GetRequest<EntityReturned>(url, options, requestOptions);
-        }
-
-        public Task<EntityReturned> GetEntityAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken, BaseOptions options = null)
-        {
-            return this.GetRequestAsync<EntityReturned>(url, options, requestOptions, cancellationToken);
-        }
-
-        public StripeList<EntityReturned> GetEntityList(string url, RequestOptions requestOptions, BaseOptions options = null)
-        {
-            return this.GetRequest<StripeList<EntityReturned>>(url, options, requestOptions);
-        }
-
-        public Task<StripeList<EntityReturned>> GetEntityListAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken, BaseOptions options = null)
-        {
-            return this.GetRequestAsync<StripeList<EntityReturned>>(url, options, requestOptions, cancellationToken);
-        }
-
-        public EntityReturned Post(string url, RequestOptions requestOptions, BaseOptions options = null)
-        {
-            return this.PostRequest<EntityReturned>(url, options, requestOptions);
-        }
-
-        public Task<EntityReturned> PostAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken, BaseOptions options = null)
-        {
-            return this.PostRequestAsync<EntityReturned>(url, options, requestOptions, cancellationToken);
-        }
+        public abstract string BasePath { get; }
 
         protected EntityReturned CreateEntity(BaseOptions options = null, RequestOptions requestOptions = null)
         {
