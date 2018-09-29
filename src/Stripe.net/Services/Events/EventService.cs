@@ -19,14 +19,16 @@ namespace Stripe
         {
         }
 
-        public virtual Event Get(string country, RequestOptions requestOptions = null)
+        public override string BasePath => "/events";
+
+        public virtual Event Get(string eventId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity($"{Urls.BaseUrl}/events/{country}", requestOptions);
+            return this.GetEntityNew(eventId, requestOptions);
         }
 
-        public virtual Task<Event> GetAsync(string country, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Event> GetAsync(string eventId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync($"{Urls.BaseUrl}/events/{country}", requestOptions, cancellationToken);
+            return this.GetEntityAsyncNew(eventId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Event> List(EventListOptions options = null, RequestOptions requestOptions = null)

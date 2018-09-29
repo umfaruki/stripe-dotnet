@@ -135,9 +135,17 @@ namespace StripeTests
         }
 
         [Fact]
-        public void GetWithNoId()
+        public void GetSelf()
         {
-            var account = this.service.Get();
+            var account = this.service.GetSelf();
+            Assert.NotNull(account);
+            Assert.Equal("account", account.Object);
+        }
+
+        [Fact]
+        public async Task GetSelfAsync()
+        {
+            var account = await this.service.GetSelfAsync();
             Assert.NotNull(account);
             Assert.Equal("account", account.Object);
         }

@@ -32,7 +32,7 @@ namespace Stripe
 
         public virtual Task<Coupon> CreateAsync(CouponCreateOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(options, requestOptions);
+            return this.CreateEntityAsync(options, requestOptions, cancellationToken);
         }
 
         public virtual Coupon Delete(string couponId, RequestOptions requestOptions = null)
@@ -42,7 +42,7 @@ namespace Stripe
 
         public virtual Task<Coupon> DeleteAsync(string couponId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(couponId, requestOptions);
+            return this.DeleteEntityAsyncNew(couponId, requestOptions, cancellationToken);
         }
 
         public virtual Coupon Get(string couponId, RequestOptions requestOptions = null)
