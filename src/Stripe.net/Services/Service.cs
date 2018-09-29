@@ -22,7 +22,7 @@ namespace Stripe
         public string ApiKey { get; set; }
 
         // TODO: make abstract to force services to implement this
-        public virtual string ObjectName { get; }
+        public virtual string BasePath { get; }
 
         public virtual EntityReturned DeleteEntity(string url, RequestOptions requestOptions, BaseOptions options = null)
         {
@@ -75,9 +75,21 @@ namespace Stripe
         }
 
         // TODO: rename to DeleteEntity
+        protected EntityReturned DeleteEntityNew(string id, RequestOptions requestOptions = null)
+        {
+            return this.DeleteEntityNew(id, null, requestOptions);
+        }
+
+        // TODO: rename to DeleteEntity
         protected EntityReturned DeleteEntityNew(string id, BaseOptions options = null, RequestOptions requestOptions = null)
         {
             return this.DeleteRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
+        }
+
+        // TODO: rename to DeleteEntityAsync
+        protected Task<EntityReturned> DeleteEntityAsyncNew(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.DeleteEntityAsyncNew(id, null, requestOptions, cancellationToken);
         }
 
         // TODO: rename to DeleteEntityAsync
@@ -87,9 +99,21 @@ namespace Stripe
         }
 
         // TODO: rename to GetEntity
+        protected EntityReturned GetEntityNew(string id, RequestOptions requestOptions = null)
+        {
+            return this.GetEntityNew(id, null, requestOptions);
+        }
+
+        // TODO: rename to GetEntity
         protected EntityReturned GetEntityNew(string id, BaseOptions options = null, RequestOptions requestOptions = null)
         {
             return this.GetRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
+        }
+
+        // TODO: rename to GetEntityAsync
+        protected Task<EntityReturned> GetEntityAsyncNew(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.GetEntityAsyncNew(id, null, requestOptions, cancellationToken);
         }
 
         // TODO: rename to GetEntityAsync
@@ -187,9 +211,7 @@ namespace Stripe
         protected virtual string ClassUrl(string baseUrl = null)
         {
             baseUrl = baseUrl ?? StripeConfiguration.GetApiBase();
-
-            // TODO: remove /v1 from GetApiBase and add it here
-            return $"{baseUrl}/{this.ObjectName.Replace(".", "/")}s";
+            return $"{baseUrl}{this.BasePath}";
         }
 
         protected virtual string InstanceUrl(string id, string baseUrl = null)

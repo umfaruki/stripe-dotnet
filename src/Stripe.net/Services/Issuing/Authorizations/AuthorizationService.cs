@@ -21,7 +21,7 @@ namespace Stripe.Issuing
         {
         }
 
-        public override string ObjectName => "issuing.authorization";
+        public override string BasePath => "/issuing/authorizations";
 
         public virtual Authorization Approve(string authorizationId, AuthorizationApproveOptions options = null, RequestOptions requestOptions = null)
         {
@@ -45,12 +45,12 @@ namespace Stripe.Issuing
 
         public virtual Authorization Get(string authorizationId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(authorizationId, null, requestOptions);
+            return this.GetEntityNew(authorizationId, requestOptions);
         }
 
         public virtual Task<Authorization> GetAsync(string authorizationId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(authorizationId, null, requestOptions, cancellationToken);
+            return this.GetEntityAsyncNew(authorizationId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Authorization> List(AuthorizationListOptions options = null, RequestOptions requestOptions = null)

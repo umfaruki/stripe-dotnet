@@ -23,7 +23,7 @@ namespace Stripe
         {
         }
 
-        public override string ObjectName => "coupon";
+        public override string BasePath => "/coupons";
 
         public virtual Coupon Create(CouponCreateOptions options, RequestOptions requestOptions = null)
         {
@@ -37,22 +37,22 @@ namespace Stripe
 
         public virtual Coupon Delete(string couponId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(couponId, null, requestOptions);
+            return this.DeleteEntityNew(couponId, requestOptions);
         }
 
         public virtual Task<Coupon> DeleteAsync(string couponId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(couponId, null, requestOptions);
+            return this.DeleteEntityAsyncNew(couponId, requestOptions);
         }
 
         public virtual Coupon Get(string couponId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(couponId, null, requestOptions);
+            return this.GetEntityNew(couponId, requestOptions);
         }
 
         public virtual Task<Coupon> GetAsync(string couponId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(couponId, null, requestOptions, cancellationToken);
+            return this.GetEntityAsyncNew(couponId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Coupon> List(CouponListOptions options = null, RequestOptions requestOptions = null)

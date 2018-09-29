@@ -21,7 +21,7 @@ namespace Stripe
         {
         }
 
-        public override string ObjectName => "apple_pay_domain";
+        public override string BasePath => "/apple_pay/domains";
 
         public virtual ApplePayDomain Create(ApplePayDomainCreateOptions options, RequestOptions requestOptions = null)
         {
@@ -35,22 +35,22 @@ namespace Stripe
 
         public virtual ApplePayDomain Delete(string domainId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(domainId, null, requestOptions);
+            return this.DeleteEntityNew(domainId, requestOptions);
         }
 
         public virtual Task<ApplePayDomain> DeleteAsync(string domainId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(domainId, null, requestOptions, cancellationToken);
+            return this.DeleteEntityAsyncNew(domainId, requestOptions, cancellationToken);
         }
 
         public virtual ApplePayDomain Get(string domainId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(domainId, null, requestOptions);
+            return this.GetEntityNew(domainId, requestOptions);
         }
 
         public virtual Task<ApplePayDomain> GetAsync(string domainId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(domainId, null, requestOptions, cancellationToken);
+            return this.GetEntityAsyncNew(domainId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ApplePayDomain> List(ApplePayDomainListOptions options = null, RequestOptions requestOptions = null)
@@ -61,13 +61,6 @@ namespace Stripe
         public virtual Task<StripeList<ApplePayDomain>> ListAsync(ApplePayDomainListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.ListEntitiesAsync(options, requestOptions, cancellationToken);
-        }
-
-        protected override string ClassUrl(string baseUrl = null)
-        {
-            baseUrl = baseUrl ?? StripeConfiguration.GetApiBase();
-
-            return $"{baseUrl}/apple_pay/domains";
         }
     }
 }
