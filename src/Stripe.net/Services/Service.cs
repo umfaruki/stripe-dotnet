@@ -122,12 +122,12 @@ namespace Stripe
             return this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
-        protected StripeList<EntityReturned> ListEntities(BaseOptions options = null, RequestOptions requestOptions = null)
+        protected StripeList<EntityReturned> ListEntities(ListOptions options = null, RequestOptions requestOptions = null)
         {
             return this.GetRequest<StripeList<EntityReturned>>(this.ClassUrl(), options, requestOptions);
         }
 
-        protected Task<StripeList<EntityReturned>> ListEntitiesAsync(BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<StripeList<EntityReturned>> ListEntitiesAsync(ListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.GetRequestAsync<StripeList<EntityReturned>>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }

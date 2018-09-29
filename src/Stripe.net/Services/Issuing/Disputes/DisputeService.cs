@@ -17,12 +17,12 @@ namespace Stripe.Issuing
         {
         }
 
-        public override string BasePath => "/issuing/disputes";
-
         public DisputeService(string apiKey)
             : base(apiKey)
         {
         }
+
+        public override string BasePath => "/issuing/disputes";
 
         public virtual Dispute Create(DisputeCreateOptions options, RequestOptions requestOptions = null)
         {
