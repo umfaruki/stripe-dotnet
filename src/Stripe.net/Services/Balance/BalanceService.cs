@@ -23,12 +23,12 @@ namespace Stripe
 
         public virtual Balance Get(RequestOptions requestOptions = null)
         {
-            return this.GetRequest<Balance>($"{Urls.BaseUrl}/{this.BasePath}", null, requestOptions);
+            return this.GetRequest<Balance>(this.ClassUrl(), null, requestOptions);
         }
 
         public virtual Task<Balance> GetAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetRequestAsync<Balance>($"{Urls.BaseUrl}/{this.BasePath}", null, requestOptions, cancellationToken);
+            return this.GetRequestAsync<Balance>(this.ClassUrl(), null, requestOptions, cancellationToken);
         }
     }
 }
