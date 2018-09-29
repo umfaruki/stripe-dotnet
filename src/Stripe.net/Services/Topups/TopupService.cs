@@ -48,12 +48,12 @@ namespace Stripe
 
         public virtual Topup Get(string topupId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(topupId, requestOptions);
+            return this.GetEntity(topupId, requestOptions);
         }
 
         public virtual Task<Topup> GetAsync(string topupId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(topupId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(topupId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Topup> List(TopupListOptions options = null, RequestOptions requestOptions = null)

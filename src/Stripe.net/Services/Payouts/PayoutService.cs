@@ -51,12 +51,12 @@ namespace Stripe
 
         public virtual Payout Get(string payoutId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(payoutId, requestOptions);
+            return this.GetEntity(payoutId, requestOptions);
         }
 
         public virtual Task<Payout> GetAsync(string payoutId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(payoutId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(payoutId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Payout> List(PayoutListOptions options = null, RequestOptions requestOptions = null)

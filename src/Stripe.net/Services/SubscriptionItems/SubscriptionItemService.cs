@@ -36,22 +36,22 @@ namespace Stripe
 
         public virtual SubscriptionItem Delete(string subscriptionItemId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(subscriptionItemId, requestOptions);
+            return this.DeleteEntity(subscriptionItemId, requestOptions);
         }
 
         public virtual Task<SubscriptionItem> DeleteAsync(string subscriptionItemId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(subscriptionItemId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(subscriptionItemId, requestOptions, cancellationToken);
         }
 
         public virtual SubscriptionItem Get(string subscriptionItemId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(subscriptionItemId, requestOptions);
+            return this.GetEntity(subscriptionItemId, requestOptions);
         }
 
         public virtual Task<SubscriptionItem> GetAsync(string subscriptionItemId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(subscriptionItemId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(subscriptionItemId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<SubscriptionItem> List(SubscriptionItemListOptions options = null, RequestOptions requestOptions = null)

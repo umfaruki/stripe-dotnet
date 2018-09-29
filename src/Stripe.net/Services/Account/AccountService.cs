@@ -38,22 +38,22 @@ namespace Stripe
 
         public virtual Account Delete(string accountId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(accountId, requestOptions);
+            return this.DeleteEntity(accountId, requestOptions);
         }
 
         public virtual Task<Account> DeleteAsync(string accountId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(accountId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(accountId, requestOptions, cancellationToken);
         }
 
         public virtual Account Get(string accountId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(accountId, requestOptions);
+            return this.GetEntity(accountId, requestOptions);
         }
 
         public virtual Task<Account> GetAsync(string accountId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(accountId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(accountId, requestOptions, cancellationToken);
         }
 
         public virtual Account GetSelf(RequestOptions requestOptions = null)

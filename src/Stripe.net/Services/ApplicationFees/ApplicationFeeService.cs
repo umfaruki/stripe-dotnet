@@ -33,12 +33,12 @@ namespace Stripe
 
         public virtual ApplicationFee Get(string applicationFeeId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(applicationFeeId, requestOptions);
+            return this.GetEntity(applicationFeeId, requestOptions);
         }
 
         public virtual Task<ApplicationFee> GetAsync(string applicationFeeId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(applicationFeeId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(applicationFeeId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ApplicationFee> List(ApplicationFeeListOptions options = null, RequestOptions requestOptions = null)

@@ -37,22 +37,22 @@ namespace Stripe
 
         public virtual Product Delete(string productId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(productId, requestOptions);
+            return this.DeleteEntity(productId, requestOptions);
         }
 
         public virtual Task<Product> DeleteAsync(string productId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(productId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(productId, requestOptions, cancellationToken);
         }
 
         public virtual Product Get(string productId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(productId, requestOptions);
+            return this.GetEntity(productId, requestOptions);
         }
 
         public virtual Task<Product> GetAsync(string productId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(productId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(productId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Product> List(ProductListOptions options = null, RequestOptions requestOptions = null)

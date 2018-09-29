@@ -26,12 +26,12 @@ namespace Stripe
 
         public virtual BalanceTransaction Get(string balanceTransactionId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(balanceTransactionId, requestOptions);
+            return this.GetEntity(balanceTransactionId, requestOptions);
         }
 
         public virtual Task<BalanceTransaction> GetAsync(string balanceTransactionId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(balanceTransactionId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(balanceTransactionId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<BalanceTransaction> List(BalanceTransactionListOptions options = null, RequestOptions requestOptions = null)

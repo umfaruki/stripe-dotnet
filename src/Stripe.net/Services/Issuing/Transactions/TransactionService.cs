@@ -25,12 +25,12 @@ namespace Stripe.Issuing
 
         public virtual Transaction Get(string transactionId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(transactionId, requestOptions);
+            return this.GetEntity(transactionId, requestOptions);
         }
 
         public virtual Task<Transaction> GetAsync(string transactionId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(transactionId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(transactionId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Transaction> List(TransactionListOptions options = null, RequestOptions requestOptions = null)

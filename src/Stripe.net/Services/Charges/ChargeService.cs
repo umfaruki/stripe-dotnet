@@ -70,12 +70,12 @@ namespace Stripe
 
         public virtual Charge Get(string chargeId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(chargeId, requestOptions);
+            return this.GetEntity(chargeId, requestOptions);
         }
 
         public virtual Task<Charge> GetAsync(string chargeId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(chargeId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(chargeId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Charge> List(ChargeListOptions options = null, RequestOptions requestOptions = null)

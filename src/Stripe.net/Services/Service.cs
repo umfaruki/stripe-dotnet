@@ -33,50 +33,42 @@ namespace Stripe
             return this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
 
-        // TODO: rename to DeleteEntity
-        protected EntityReturned DeleteEntityNew(string id, RequestOptions requestOptions = null)
+        protected EntityReturned DeleteEntity(string id, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(id, null, requestOptions);
+            return this.DeleteEntity(id, null, requestOptions);
         }
 
-        // TODO: rename to DeleteEntity
-        protected EntityReturned DeleteEntityNew(string id, BaseOptions options = null, RequestOptions requestOptions = null)
+        protected EntityReturned DeleteEntity(string id, BaseOptions options = null, RequestOptions requestOptions = null)
         {
             return this.DeleteRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
-        // TODO: rename to DeleteEntityAsync
-        protected Task<EntityReturned> DeleteEntityAsyncNew(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> DeleteEntityAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(id, null, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
-        // TODO: rename to DeleteEntityAsync
-        protected Task<EntityReturned> DeleteEntityAsyncNew(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> DeleteEntityAsync(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
-        // TODO: rename to GetEntity
-        protected EntityReturned GetEntityNew(string id, RequestOptions requestOptions = null)
+        protected EntityReturned GetEntity(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions);
         }
 
-        // TODO: rename to GetEntity
-        protected EntityReturned GetEntityNew(string id, BaseOptions options = null, RequestOptions requestOptions = null)
+        protected EntityReturned GetEntity(string id, BaseOptions options = null, RequestOptions requestOptions = null)
         {
             return this.GetRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
-        // TODO: rename to GetEntityAsync
-        protected Task<EntityReturned> GetEntityAsyncNew(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> GetEntityAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(id, null, requestOptions, cancellationToken);
+            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
-        // TODO: rename to GetEntityAsync
-        protected Task<EntityReturned> GetEntityAsyncNew(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> GetEntityAsync(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }

@@ -39,12 +39,12 @@ namespace Stripe
 
         public virtual Order Get(string orderId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(orderId, requestOptions);
+            return this.GetEntity(orderId, requestOptions);
         }
 
         public virtual Task<Order> GetAsync(string orderId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(orderId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(orderId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Order> List(OrderListOptions options = null, RequestOptions requestOptions = null)

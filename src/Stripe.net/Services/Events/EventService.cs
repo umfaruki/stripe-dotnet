@@ -23,12 +23,12 @@ namespace Stripe
 
         public virtual Event Get(string eventId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(eventId, requestOptions);
+            return this.GetEntity(eventId, requestOptions);
         }
 
         public virtual Task<Event> GetAsync(string eventId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(eventId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(eventId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Event> List(EventListOptions options = null, RequestOptions requestOptions = null)

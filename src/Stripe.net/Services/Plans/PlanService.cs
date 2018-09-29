@@ -39,22 +39,22 @@ namespace Stripe
 
         public virtual Plan Delete(string planId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(planId, requestOptions);
+            return this.DeleteEntity(planId, requestOptions);
         }
 
         public virtual Task<Plan> DeleteAsync(string planId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(planId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(planId, requestOptions, cancellationToken);
         }
 
         public virtual Plan Get(string planId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(planId, requestOptions);
+            return this.GetEntity(planId, requestOptions);
         }
 
         public virtual Task<Plan> GetAsync(string planId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(planId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(planId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Plan> List(PlanListOptions options = null, RequestOptions requestOptions = null)

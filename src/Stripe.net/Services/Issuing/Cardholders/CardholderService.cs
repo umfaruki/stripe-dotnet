@@ -36,12 +36,12 @@ namespace Stripe.Issuing
 
         public virtual Cardholder Get(string cardholderId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(cardholderId, requestOptions);
+            return this.GetEntity(cardholderId, requestOptions);
         }
 
         public virtual Task<Cardholder> GetAsync(string cardholderId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(cardholderId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(cardholderId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Cardholder> List(CardholderListOptions options = null, RequestOptions requestOptions = null)

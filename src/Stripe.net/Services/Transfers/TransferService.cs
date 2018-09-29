@@ -43,12 +43,12 @@ namespace Stripe
 
         public virtual Transfer Get(string transferId, RequestOptions requestOptions = null)
         {
-            return this.GetEntityNew(transferId, requestOptions);
+            return this.GetEntity(transferId, requestOptions);
         }
 
         public virtual Task<Transfer> GetAsync(string transferId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsyncNew(transferId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(transferId, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Transfer> List(TransferListOptions options = null, RequestOptions requestOptions = null)

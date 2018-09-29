@@ -48,12 +48,12 @@ namespace Stripe
 
         public virtual EphemeralKey Delete(string keyId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntityNew(keyId, requestOptions);
+            return this.DeleteEntity(keyId, requestOptions);
         }
 
         public virtual Task<EphemeralKey> DeleteAsync(string keyId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsyncNew(keyId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(keyId, requestOptions, cancellationToken);
         }
     }
 }
