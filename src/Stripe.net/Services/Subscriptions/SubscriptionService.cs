@@ -33,7 +33,7 @@ namespace Stripe
 
         public virtual Task<Subscription> CancelAsync(string subscriptionId, SubscriptionCancelOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(subscriptionId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(subscriptionId, options, requestOptions, cancellationToken);
         }
 
         public virtual Subscription Create(SubscriptionCreateOptions options, RequestOptions requestOptions = null)
@@ -48,12 +48,12 @@ namespace Stripe
 
         public virtual Subscription Get(string subscriptionId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(subscriptionId, requestOptions);
+            return this.GetEntity(subscriptionId, null, requestOptions);
         }
 
         public virtual Task<Subscription> GetAsync(string subscriptionId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(subscriptionId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(subscriptionId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Subscription> List(SubscriptionListOptions options = null, RequestOptions requestOptions = null)

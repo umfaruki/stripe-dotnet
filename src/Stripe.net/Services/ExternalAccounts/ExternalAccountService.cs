@@ -5,7 +5,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class ExternalAccountService : ServiceNested<ExternalAccount, Account>,
+    public class ExternalAccountService : ServiceNested<ExternalAccount>,
         INestedCreatable<ExternalAccount, ExternalAccountCreateOptions>,
         INestedDeletable<ExternalAccount>,
         INestedListable<ExternalAccount, ExternalAccountListOptions>,
@@ -36,22 +36,22 @@ namespace Stripe
 
         public virtual ExternalAccount Delete(string accountId, string externalAccountId, RequestOptions requestOptions = null)
         {
-            return this.DeleteNestedEntity(accountId, externalAccountId, requestOptions);
+            return this.DeleteNestedEntity(accountId, externalAccountId, null, requestOptions);
         }
 
         public virtual Task<ExternalAccount> DeleteAsync(string accountId, string externalAccountId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteNestedEntityAsync(accountId, externalAccountId, requestOptions, cancellationToken);
+            return this.DeleteNestedEntityAsync(accountId, externalAccountId, null, requestOptions, cancellationToken);
         }
 
         public virtual ExternalAccount Get(string accountId, string externalAccountId, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(accountId, externalAccountId, requestOptions);
+            return this.GetNestedEntity(accountId, externalAccountId, null, requestOptions);
         }
 
         public virtual Task<ExternalAccount> GetAsync(string accountId, string externalAccountId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetNestedEntityAsync(accountId, externalAccountId, requestOptions, cancellationToken);
+            return this.GetNestedEntityAsync(accountId, externalAccountId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ExternalAccount> List(string accountId, ExternalAccountListOptions options = null, RequestOptions requestOptions = null)

@@ -22,12 +22,12 @@ namespace Stripe.Sigma
 
         public virtual ScheduledQueryRun Get(string queryRunId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(queryRunId, requestOptions);
+            return this.GetEntity(queryRunId, null, requestOptions);
         }
 
         public virtual Task<ScheduledQueryRun> GetAsync(string queryRunId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(queryRunId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(queryRunId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ScheduledQueryRun> List(ScheduledQueryRunListOptions options = null, RequestOptions requestOptions = null)

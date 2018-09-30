@@ -5,7 +5,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class UsageRecordService : ServiceNested<UsageRecord, SubscriptionItem>,
+    public class UsageRecordService : ServiceNested<UsageRecord>,
         ICreatable<UsageRecord, UsageRecordCreateOptions>
     {
         public UsageRecordService()

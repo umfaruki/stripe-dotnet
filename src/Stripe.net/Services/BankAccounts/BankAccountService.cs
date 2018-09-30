@@ -5,7 +5,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class BankAccountService : ServiceNested<BankAccount, Customer>,
+    public class BankAccountService : ServiceNested<BankAccount>,
         INestedCreatable<BankAccount, BankAccountCreateOptions>,
         INestedDeletable<BankAccount>,
         INestedListable<BankAccount, BankAccountListOptions>,
@@ -38,22 +38,22 @@ namespace Stripe
 
         public virtual BankAccount Delete(string customerId, string bankAccountId, RequestOptions requestOptions = null)
         {
-            return this.DeleteNestedEntity(customerId, bankAccountId, requestOptions);
+            return this.DeleteNestedEntity(customerId, bankAccountId, null, requestOptions);
         }
 
         public virtual Task<BankAccount> DeleteAsync(string customerId, string bankAccountId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteNestedEntityAsync(customerId, bankAccountId, requestOptions, cancellationToken);
+            return this.DeleteNestedEntityAsync(customerId, bankAccountId, null, requestOptions, cancellationToken);
         }
 
         public virtual BankAccount Get(string customerId, string bankAccountId, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(customerId, bankAccountId, requestOptions);
+            return this.GetNestedEntity(customerId, bankAccountId, null, requestOptions);
         }
 
         public virtual Task<BankAccount> GetAsync(string customerId, string bankAccountId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetNestedEntityAsync(customerId, bankAccountId, requestOptions, cancellationToken);
+            return this.GetNestedEntityAsync(customerId, bankAccountId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<BankAccount> List(string customerId, BankAccountListOptions options = null, RequestOptions requestOptions = null)

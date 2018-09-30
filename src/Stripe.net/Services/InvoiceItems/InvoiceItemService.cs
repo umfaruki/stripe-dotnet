@@ -42,22 +42,22 @@ namespace Stripe
 
         public virtual InvoiceLineItem Delete(string invoiceitemId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(invoiceitemId, requestOptions);
+            return this.DeleteEntity(invoiceitemId, null, requestOptions);
         }
 
         public virtual Task<InvoiceLineItem> DeleteAsync(string invoiceitemId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(invoiceitemId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(invoiceitemId, null, requestOptions, cancellationToken);
         }
 
         public virtual InvoiceLineItem Get(string invoiceitemId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(invoiceitemId, requestOptions);
+            return this.GetEntity(invoiceitemId, null, requestOptions);
         }
 
         public virtual Task<InvoiceLineItem> GetAsync(string invoiceitemId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(invoiceitemId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(invoiceitemId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<InvoiceLineItem> List(InvoiceItemListOptions options = null, RequestOptions requestOptions = null)

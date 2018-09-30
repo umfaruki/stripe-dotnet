@@ -35,12 +35,12 @@ namespace Stripe.Reporting
 
         public virtual ReportRun Get(string reportRunId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(reportRunId, requestOptions);
+            return this.GetEntity(reportRunId, null, requestOptions);
         }
 
         public virtual Task<ReportRun> GetAsync(string reportRunId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(reportRunId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(reportRunId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ReportRun> List(ReportRunListOptions options = null, RequestOptions requestOptions = null)

@@ -23,72 +23,52 @@ namespace Stripe
 
         public abstract string BasePath { get; }
 
-        protected EntityReturned CreateEntity(BaseOptions options = null, RequestOptions requestOptions = null)
+        protected EntityReturned CreateEntity(BaseOptions options, RequestOptions requestOptions)
         {
             return this.PostRequest<EntityReturned>(this.ClassUrl(), options, requestOptions);
         }
 
-        protected Task<EntityReturned> CreateEntityAsync(BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> CreateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
 
-        protected EntityReturned DeleteEntity(string id, RequestOptions requestOptions = null)
-        {
-            return this.DeleteEntity(id, null, requestOptions);
-        }
-
-        protected EntityReturned DeleteEntity(string id, BaseOptions options = null, RequestOptions requestOptions = null)
+        protected EntityReturned DeleteEntity(string id, BaseOptions options, RequestOptions requestOptions)
         {
             return this.DeleteRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
-        protected Task<EntityReturned> DeleteEntityAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
-        }
-
-        protected Task<EntityReturned> DeleteEntityAsync(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> DeleteEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
-        protected EntityReturned GetEntity(string id, RequestOptions requestOptions = null)
-        {
-            return this.GetEntity(id, null, requestOptions);
-        }
-
-        protected EntityReturned GetEntity(string id, BaseOptions options = null, RequestOptions requestOptions = null)
+        protected EntityReturned GetEntity(string id, BaseOptions options, RequestOptions requestOptions)
         {
             return this.GetRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
-        protected Task<EntityReturned> GetEntityAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
-        }
-
-        protected Task<EntityReturned> GetEntityAsync(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> GetEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
-        protected StripeList<EntityReturned> ListEntities(ListOptions options = null, RequestOptions requestOptions = null)
+        protected StripeList<EntityReturned> ListEntities(ListOptions options, RequestOptions requestOptions)
         {
             return this.GetRequest<StripeList<EntityReturned>>(this.ClassUrl(), options, requestOptions);
         }
 
-        protected Task<StripeList<EntityReturned>> ListEntitiesAsync(ListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<StripeList<EntityReturned>> ListEntitiesAsync(ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return this.GetRequestAsync<StripeList<EntityReturned>>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
 
-        protected EntityReturned UpdateEntity(string id, BaseOptions options = null, RequestOptions requestOptions = null)
+        protected EntityReturned UpdateEntity(string id, BaseOptions options, RequestOptions requestOptions)
         {
             return this.PostRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
-        protected Task<EntityReturned> UpdateEntityAsync(string id, BaseOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        protected Task<EntityReturned> UpdateEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return this.PostRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }

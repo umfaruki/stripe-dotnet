@@ -6,7 +6,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class CardService : ServiceNested<Card, Customer>,
+    public class CardService : ServiceNested<Card>,
         INestedCreatable<Card, CardCreateOptions>,
         INestedDeletable<Card>,
         INestedListable<Card, CardListOptions>,
@@ -41,22 +41,22 @@ namespace Stripe
 
         public virtual Card Delete(string customerId, string cardId, RequestOptions requestOptions = null)
         {
-            return this.DeleteNestedEntity(customerId, cardId, requestOptions);
+            return this.DeleteNestedEntity(customerId, cardId, null, requestOptions);
         }
 
         public virtual Task<Card> DeleteAsync(string customerId, string cardId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteNestedEntityAsync(customerId, cardId, requestOptions, cancellationToken);
+            return this.DeleteNestedEntityAsync(customerId, cardId, null, requestOptions, cancellationToken);
         }
 
         public virtual Card Get(string customerId, string cardId, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(customerId, cardId, requestOptions);
+            return this.GetNestedEntity(customerId, cardId, null, requestOptions);
         }
 
         public virtual Task<Card> GetAsync(string customerId, string cardId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetNestedEntityAsync(customerId, cardId, requestOptions, cancellationToken);
+            return this.GetNestedEntityAsync(customerId, cardId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Card> List(string customerId, CardListOptions options = null, RequestOptions requestOptions = null)

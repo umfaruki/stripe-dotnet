@@ -23,12 +23,12 @@ namespace Stripe
 
         public virtual ExchangeRate Get(string currency, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(currency, requestOptions);
+            return this.GetEntity(currency, null, requestOptions);
         }
 
         public virtual Task<ExchangeRate> GetAsync(string currency, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(currency, requestOptions, cancellationToken);
+            return this.GetEntityAsync(currency, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ExchangeRate> List(ExchangeRateListOptions options = null, RequestOptions requestOptions = null)

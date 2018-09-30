@@ -42,12 +42,12 @@ namespace Stripe
 
         public virtual Refund Get(string refundId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(refundId, requestOptions);
+            return this.GetEntity(refundId, null, requestOptions);
         }
 
         public virtual Task<Refund> GetAsync(string refundId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(refundId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(refundId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Refund> List(RefundListOptions options = null, RequestOptions requestOptions = null)

@@ -23,12 +23,12 @@ namespace Stripe
 
         public virtual CountrySpec Get(string country, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(country, requestOptions);
+            return this.GetEntity(country, null, requestOptions);
         }
 
         public virtual Task<CountrySpec> GetAsync(string country, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(country, requestOptions, cancellationToken);
+            return this.GetEntityAsync(country, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<CountrySpec> List(CountrySpecListOptions options = null, RequestOptions requestOptions = null)

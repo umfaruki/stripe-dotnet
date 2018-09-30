@@ -71,12 +71,12 @@ namespace Stripe
 
         public virtual PaymentIntent Get(string paymentIntentId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(paymentIntentId, requestOptions);
+            return this.GetEntity(paymentIntentId, null, requestOptions);
         }
 
         public virtual Task<PaymentIntent> GetAsync(string paymentIntentId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(paymentIntentId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(paymentIntentId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<PaymentIntent> List(PaymentIntentListOptions options = null, RequestOptions requestOptions = null)

@@ -37,22 +37,22 @@ namespace Stripe
 
         public virtual Coupon Delete(string couponId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(couponId, requestOptions);
+            return this.DeleteEntity(couponId, null, requestOptions);
         }
 
         public virtual Task<Coupon> DeleteAsync(string couponId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(couponId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(couponId, null, requestOptions, cancellationToken);
         }
 
         public virtual Coupon Get(string couponId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(couponId, requestOptions);
+            return this.GetEntity(couponId, null, requestOptions);
         }
 
         public virtual Task<Coupon> GetAsync(string couponId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(couponId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(couponId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Coupon> List(CouponListOptions options = null, RequestOptions requestOptions = null)

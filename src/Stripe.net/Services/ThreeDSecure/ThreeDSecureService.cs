@@ -28,7 +28,7 @@ namespace Stripe
 
         public virtual Task<ThreeDSecure> CreateAsync(ThreeDSecureCreateOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(options, requestOptions);
+            return this.CreateEntityAsync(options, requestOptions, cancellationToken);
         }
     }
 }

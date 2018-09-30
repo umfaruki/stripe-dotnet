@@ -41,12 +41,12 @@ namespace Stripe
 
         public virtual Invoice Get(string invoiceId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(invoiceId, requestOptions);
+            return this.GetEntity(invoiceId, null, requestOptions);
         }
 
         public virtual Task<Invoice> GetAsync(string invoiceId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(invoiceId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(invoiceId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Invoice> List(InvoiceListOptions options = null, RequestOptions requestOptions = null)

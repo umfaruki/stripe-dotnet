@@ -35,22 +35,22 @@ namespace Stripe
 
         public virtual ApplePayDomain Delete(string domainId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(domainId, requestOptions);
+            return this.DeleteEntity(domainId, null, requestOptions);
         }
 
         public virtual Task<ApplePayDomain> DeleteAsync(string domainId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(domainId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(domainId, null, requestOptions, cancellationToken);
         }
 
         public virtual ApplePayDomain Get(string domainId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(domainId, requestOptions);
+            return this.GetEntity(domainId, null, requestOptions);
         }
 
         public virtual Task<ApplePayDomain> GetAsync(string domainId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(domainId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(domainId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<ApplePayDomain> List(ApplePayDomainListOptions options = null, RequestOptions requestOptions = null)

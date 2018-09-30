@@ -5,7 +5,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class TransferReversalService : ServiceNested<TransferReversal, Transfer>,
+    public class TransferReversalService : ServiceNested<TransferReversal>,
         INestedCreatable<TransferReversal, TransferReversalCreateOptions>,
         INestedListable<TransferReversal, TransferReversalListOptions>,
         INestedRetrievable<TransferReversal>,
@@ -39,12 +39,12 @@ namespace Stripe
 
         public virtual TransferReversal Get(string transferId, string reversalId, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(transferId, reversalId, requestOptions);
+            return this.GetNestedEntity(transferId, reversalId, null, requestOptions);
         }
 
         public virtual Task<TransferReversal> GetAsync(string transferId, string reversalId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetNestedEntityAsync(transferId, reversalId, requestOptions, cancellationToken);
+            return this.GetNestedEntityAsync(transferId, reversalId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<TransferReversal> List(string transferId, TransferReversalListOptions options = null, RequestOptions requestOptions = null)
@@ -54,7 +54,7 @@ namespace Stripe
 
         public virtual Task<StripeList<TransferReversal>> ListAsync(string transferId, TransferReversalListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListNestedEntitiesAsync(transferId, options, requestOptions);
+            return this.ListNestedEntitiesAsync(transferId, options, requestOptions, cancellationToken);
         }
 
         public virtual TransferReversal Update(string transferId,  string reversalId, TransferReversalUpdateOptions options, RequestOptions requestOptions = null)

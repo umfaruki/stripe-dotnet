@@ -5,7 +5,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class LoginLinkService : ServiceNested<LoginLink, Account>,
+    public class LoginLinkService : ServiceNested<LoginLink>,
         INestedCreatable<LoginLink, LoginLinkCreateOptions>
     {
         public LoginLinkService()

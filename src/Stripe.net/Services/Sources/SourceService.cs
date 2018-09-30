@@ -54,12 +54,12 @@ namespace Stripe
 
         public virtual Source Get(string sourceId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(sourceId, requestOptions);
+            return this.GetEntity(sourceId, null, requestOptions);
         }
 
         public virtual Task<Source> GetAsync(string sourceId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(sourceId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(sourceId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Source> List(string customerId, SourceListOptions options = null, RequestOptions requestOptions = null)

@@ -39,22 +39,22 @@ namespace Stripe
 
         public virtual Sku Delete(string skuId, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(skuId, requestOptions);
+            return this.DeleteEntity(skuId, null, requestOptions);
         }
 
         public virtual Task<Sku> DeleteAsync(string skuId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(skuId, requestOptions, cancellationToken);
+            return this.DeleteEntityAsync(skuId, null, requestOptions, cancellationToken);
         }
 
         public virtual Sku Get(string skuId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(skuId, requestOptions);
+            return this.GetEntity(skuId, null, requestOptions);
         }
 
         public virtual Task<Sku> GetAsync(string skuId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(skuId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(skuId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Sku> List(SkuListOptions options = null, RequestOptions requestOptions = null)

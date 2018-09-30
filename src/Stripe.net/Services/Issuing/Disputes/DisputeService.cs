@@ -36,12 +36,12 @@ namespace Stripe.Issuing
 
         public virtual Dispute Get(string disputeId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(disputeId, requestOptions);
+            return this.GetEntity(disputeId, null, requestOptions);
         }
 
         public virtual Task<Dispute> GetAsync(string disputeId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(disputeId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(disputeId, null, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Dispute> List(DisputeListOptions options = null, RequestOptions requestOptions = null)

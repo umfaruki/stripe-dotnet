@@ -32,12 +32,12 @@ namespace Stripe
 
         public virtual Token Get(string tokenId, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(tokenId, requestOptions);
+            return this.GetEntity(tokenId, null, requestOptions);
         }
 
         public virtual Task<Token> GetAsync(string tokenId, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(tokenId, requestOptions, cancellationToken);
+            return this.GetEntityAsync(tokenId, null, requestOptions, cancellationToken);
         }
     }
 }

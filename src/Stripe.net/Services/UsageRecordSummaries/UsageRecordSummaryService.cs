@@ -5,7 +5,7 @@ namespace Stripe
     using System.Threading.Tasks;
     using Stripe.Infrastructure;
 
-    public class UsageRecordSummaryService : ServiceNested<UsageRecordSummary, SubscriptionItem>,
+    public class UsageRecordSummaryService : ServiceNested<UsageRecordSummary>,
         INestedListable<UsageRecordSummary, UsageRecordSummaryListOptions>
     {
         public UsageRecordSummaryService()
